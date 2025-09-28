@@ -1,8 +1,0 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// pro GitHub Pages – pokud repozitář pojmenuješ jinak, změň `base`
-export default defineConfig({
-  plugins: [react()],
-  base: '/contentbox-landing/'
-})
