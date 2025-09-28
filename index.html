@@ -1,19 +1,146 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ContentBox – All-in-one platforma</title>
+  
+  <!-- Tailwind přes CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap");
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap" rel="stylesheet">
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #fff;
-  color: #121212;
-}
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Oswald', sans-serif; }
+    .btn-hover-scale { transition: transform .2s; }
+    .btn-hover-scale:hover { transform: scale(1.05); }
+    .faq-answer { display: none; }
+    .faq.open .faq-answer { display: block; }
+  </style>
+</head>
+<body class="bg-white text-[#121212]">
 
-h1, h2, h3 {
-  font-family: 'Oswald', sans-serif;
-}
+  <!-- HERO SEKCE -->
+  <section class="bg-[#EEEEEE] p-6 md:p-12">
+    <nav class="flex items-center justify-between bg-white/70 rounded-full px-6 py-3">
+      <div class="flex items-center gap-3">
+        <img src="https://placehold.co/30x30" class="w-8 h-8" alt="logo"/>
+        <span class="font-bold text-xl">ContentBox</span>
+      </div>
+      <div class="hidden md:flex gap-6">
+        <a href="#o-aplikaci" class="hover:text-[#00CC66]">O aplikaci</a>
+        <a href="#faq" class="hover:text-[#00CC66]">FAQ</a>
+        <a href="#kontakt" class="hover:text-[#00CC66]">Kontakt</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="bg-[#6D66C5] text-white px-4 py-2 rounded-full btn-hover-scale">Log in</button>
+      </div>
+    </nav>
 
-.btn-hover-scale {
-  @apply transform transition duration-200 hover:scale-105;
-}
+    <div class="text-center mt-20 max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-6xl leading-tight">
+        <span class="text-[#00CC66]">All-in-one </span>
+        platforma pro tvorbu online kampaní
+      </h1>
+      <p class="mt-4 text-lg">Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
+      <button class="mt-8 px-6 py-3 rounded-full bg-white font-bold italic btn-hover-scale">Navázat spojení</button>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mt-12">
+      <span class="bg-white px-4 py-1 rounded">❋ Databáze projektů</span>
+      <span class="bg-white px-4 py-1 rounded">❋ Monitoring projektů</span>
+      <span class="bg-white px-4 py-1 rounded">❋ Finanční report</span>
+      <span class="bg-white px-4 py-1 rounded">❋ AI překlady</span>
+      <span class="bg-white px-4 py-1 rounded">❋ Databáze formátů</span>
+      <span class="bg-white px-4 py-1 rounded">❋ Galerie hotových grafik</span>
+      <span class="bg-white px-4 py-1 rounded">❋ Flexibilní spolupráce</span>
+    </div>
+
+    <p class="text-center mt-8">Otestováno 30+ značkami</p>
+  </section>
+
+  <!-- KLÍČOVÉ BENEFITY -->
+  <section id="o-aplikaci" class="py-20 bg-white">
+    <h2 class="text-center text-4xl mb-8">Pro koho je ContentBox ideální?</h2>
+    <p class="text-center max-w-2xl mx-auto text-lg mb-12">
+      Ideální pro značky působící online na více trzích, e-shopy hledající centralizovanou výrobu vizuálů i agentury, které chtějí zefektivnit přípravu kampaní
+      <span class="text-[#00CC66]">(a mnoho dalších).</span>
+    </p>
+
+    <div class="max-w-6xl mx-auto flex flex-col gap-16">
+      <div class="md:flex gap-12 items-center bg-[#EEEEEE] p-8 rounded-xl shadow">
+        <div class="flex-1">
+          <h3 class="text-2xl mb-4">Nový projekt spustíte během pár kliknutí.</h3>
+          <p class="mb-4">Stačí zvolit kanály a formáty, doplnit brief a vše máte pod kontrolou. Na přehledném dashboardu pak sledujete, jak se projekt krok za krokem posouvá.</p>
+          <button class="px-6 py-2 rounded-full bg-black text-white btn-hover-scale">Vyzkoušet</button>
+        </div>
+        <img src="https://placehold.co/600x300" alt="img" class="rounded-lg flex-1"/>
+      </div>
+
+      <div class="md:flex gap-12 items-center bg-[#EEEEEE] p-8 rounded-xl shadow">
+        <img src="https://placehold.co/600x300" alt="img" class="rounded-lg flex-1"/>
+        <div class="flex-1">
+          <h3 class="text-2xl mb-4">Texty i grafika vždy po ruce.</h3>
+          <p class="mb-4">Objednejte si copywritera nebo využijte AI překlady do 21 jazyků. Vizuály se automaticky ukládají do galerie, odkud je můžete kdykoli znovu použít.</p>
+          <button class="px-6 py-2 rounded-full bg-black text-white btn-hover-scale">Vyzkoušet</button>
+        </div>
+      </div>
+
+      <div class="md:flex gap-12 items-center bg-[#EEEEEE] p-8 rounded-xl shadow">
+        <div class="flex-1">
+          <h3 class="text-2xl mb-4">Finance a tým pod kontrolou.</h3>
+          <p class="mb-4">Sledujte náklady od formátů až po celé projekty, vždy s aktuálními daty. Každý projekt má vlastní chat pro snadnou komunikaci.</p>
+          <button class="px-6 py-2 rounded-full bg-black text-white btn-hover-scale">Vyzkoušet</button>
+        </div>
+        <img src="https://placehold.co/600x300" alt="img" class="rounded-lg flex-1"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 bg-white">
+    <h2 class="text-center text-4xl mb-12">FAQ – Nejčastější dotazy</h2>
+    <div class="max-w-3xl mx-auto space-y-6">
+      <div class="faq border-b pb-4 cursor-pointer">
+        <h3 class="text-xl">Podporuje ContentBox i vícejazyčné kampaně?</h3>
+        <p class="faq-answer mt-2 text-gray-700">Ano. U každého formátu si můžete nastavit požadované jazyky.</p>
+      </div>
+      <div class="faq border-b pb-4 cursor-pointer">
+        <h3 class="text-xl">Jak funguje komunikace mezi manažery a grafiky?</h3>
+        <p class="faq-answer mt-2 text-gray-700">Každý projekt má vlastní chat, ve kterém můžete označovat spolupracovníky.</p>
+      </div>
+      <div class="faq border-b pb-4 cursor-pointer">
+        <h3 class="text-xl">Jak vypadá proces přípravy kampaně?</h3>
+        <p class="faq-answer mt-2 text-gray-700">Projekt založíte během pár kliknutí, přidáte kolegy, vyberete formáty a vyplníte brief.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="py-20 bg-gradient-to-b from-white to-[#9691D4] text-center">
+    <h2 class="text-2xl mb-6">Máte zájem o spolupráci? Napište nám na</h2>
+    <p class="text-3xl font-bold italic underline text-[#6D66C5] mb-6">info@contentbakery.cz</p>
+    <button onclick="copyEmail()" class="px-6 py-3 rounded-full bg-white font-bold btn-hover-scale">📩 Zkopírovat email</button>
+
+    <footer class="mt-20 border-t pt-6 text-sm">
+      2025 Content Bakery s.r.o., Salvátorská 931/8, Staré Město, 110 00 Praha
+    </footer>
+  </section>
+
+  <!-- Skript -->
+  <script>
+    // FAQ toggle
+    document.querySelectorAll('.faq').forEach(faq => {
+      faq.addEventListener('click', () => faq.classList.toggle('open'));
+    });
+
+    // Copy email
+    function copyEmail() {
+      navigator.clipboard.writeText("info@contentbakery.cz");
+      alert("Email zkopírován!");
+    }
+  </script>
+</body>
+</html>
