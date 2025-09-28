@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap");
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #121212;
+}
+
+h1, h2, h3 {
+  font-family: 'Oswald', sans-serif;
+}
+
+.btn-hover-scale {
+  @apply transform transition duration-200 hover:scale-105;
+}
