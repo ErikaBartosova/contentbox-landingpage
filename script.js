@@ -1,4 +1,4 @@
-/* Smooth scroll */
+/* ===== Smooth scroll ===== */
 function scrollToId(id){
   const el=document.getElementById(id);
   if(!el) return;
@@ -12,14 +12,14 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a=>{
   });
 });
 
-/* FAQ toggle */
+/* ===== FAQ toggle ===== */
 document.querySelectorAll(".faq-item").forEach(item=>{
   item.querySelector(".faq-question").addEventListener("click",()=>{
     item.classList.toggle("open");
   });
 });
 
-/* Copy email */
+/* ===== Copy email ===== */
 document.getElementById("copyEmail")?.addEventListener("click",()=>{
   navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
     const b=document.getElementById("copyEmail");
@@ -29,7 +29,7 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
   });
 });
 
-/* Language dropdown (hover i klik) */
+/* ===== Language dropdown (hover i klik) ===== */
 (function(){
   const wrap=document.getElementById("lang");
   const btn=document.getElementById("langBtn");
@@ -66,16 +66,20 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
   }
 })();
 
-/* VANTA HALO background */
-VANTA.HALO({
+/* ===== VANTA DOTS background ===== */
+VANTA.DOTS({
   el: "#hero",
   mouseControls: true,
   touchControls: true,
   gyroControls: false,
   minHeight: 200.00,
   minWidth: 200.00,
-  baseColor: 0x442ed2,
-  backgroundColor: 0xd7d7ed,
-  amplitudeFactor: 3.00,
-  size: 1.60
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x1111ed,
+  color2: 0x8e6a4a,
+  backgroundColor: 0xe1e1e1,
+  size: 1.90,
+  spacing: 10.00,
+  showLines: false
 });
