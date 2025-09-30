@@ -66,12 +66,12 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
   }
 })();
 
-// VANTA NET background
-window.addEventListener("DOMContentLoaded", function () {
+// VANTA DOTS background (jen hero)
+window.addEventListener("DOMContentLoaded", () => {
   const el = document.querySelector("#hero");
   if (!el) return;
 
-  VANTA.NET({
+  VANTA.DOTS({
     el: el,
     mouseControls: true,
     touchControls: true,
@@ -80,11 +80,13 @@ window.addEventListener("DOMContentLoaded", function () {
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    color: 0x707ade,
-    backgroundColor: 0xf0f0f0,
-    points: 13.00,
-    maxDistance: 10.00,
-    spacing: 14.00
+    color: 0x0542e8,        // opravený hex
+    backgroundColor: 0xe9eaf0,
+    showLines: false,
+    // jemnější, trendovější vzhled (volitelné):
+    size: 1.9,
+    spacing: 10.0
   });
 });
+
 
