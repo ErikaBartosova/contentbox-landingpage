@@ -66,12 +66,12 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
   }
 })();
 
-// VANTA BIRDS background (fix: správný selector + jistota po načtení)
+// VANTA NET background
 window.addEventListener("DOMContentLoaded", function () {
   const el = document.querySelector("#hero");
-  if (!el) return; // bezpečnostní check
+  if (!el) return;
 
-  VANTA.BIRDS({
+  VANTA.NET({
     el: el,
     mouseControls: true,
     touchControls: true,
@@ -80,9 +80,11 @@ window.addEventListener("DOMContentLoaded", function () {
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    backgroundColor: 0xebebeb,
-    color1: 0x1c2f87,
-    color2: 0x182861,
-    quantity: 4.00
+    color: 0x707ade,
+    backgroundColor: 0xf0f0f0,
+    points: 13.00,
+    maxDistance: 10.00,
+    spacing: 14.00
   });
 });
+
