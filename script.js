@@ -13,14 +13,46 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
   });
 });
 
-/* ===== FAQ toggle (guard na chybějící .faq-question) ===== */
-document.querySelectorAll(".faq-item").forEach(item => {
-  const q = item.querySelector(".faq-question");
-  if (!q) return;
-  q.addEventListener("click", () => {
-    item.classList.toggle("open");
+/* ===== FAQ toggle (plynulá animace výšky) ===== */
+(function(){
+  const items = document.querySelectorAll(".faq-item");
+  if(!items.length) return;
+
+  items.forEach(item=>{
+    const btn = item.querySelector(".faq-question");
+    const ans = item.querySelector(".faq-answer");
+    if(!btn || !ans) return;
+
+    // zavřít – vynulovat výšku
+    const collapse = () => {
+      ans.style.maxHeight = "0px";
+      item.classList.remove("open");
+      btn.setAttribute("aria-expanded","false");
+    };
+
+    // otevřít – nastavit scrollHeight
+    const expand = () => {
+      item.classList.add("open");
+      ans.style.maxHeight = ans.scrollHeight + "px";
+      btn.setAttribute("aria-expanded","true");
+    };
+
+    btn.addEventListener("click", ()=>{
+      const isOpen = item.classList.contains("open");
+      // zavřít ostatní (volitelné: akordeon)
+      items.forEach(i=>{ if(i!==item){ const a=i.querySelector(".faq-answer"); if(a){a.style.maxHeight="0px";} i.classList.remove("open"); i.querySelector(".faq-question")?.setAttribute("aria-expanded","false"); }});
+      isOpen ? collapse() : expand();
+    });
+
+    // při resize přepočítej výšku, pokud je otevřené
+    window.addEventListener("resize", ()=>{
+      if(item.classList.contains("open")){
+        ans.style.maxHeight = ans.scrollHeight + "px";
+      }
+    });
   });
-});
+})();
+
 
 /* ===== Copy email ===== */
 document.getElementById("copyEmail")?.addEventListener("click", () => {
