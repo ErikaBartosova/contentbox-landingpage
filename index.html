@@ -10,34 +10,44 @@
 </head>
 <body>
   <!-- HEADER -->
-  <header class="menu">
-    <div class="menu-left">
-      <a href="index.html" class="logo-box">
-        <img src="Logo%20(3).png" alt="Logo" class="logo">
-        <span class="logo-text">ContentBox</span>
-      </a>
-    </div>
+<header class="site-header">
+  <nav class="nav">
+    <!-- Brand -->
+    <a class="brand" href="./" aria-label="ContentBox – domů">
+      <img src="Logo%20(3).png" alt="" width="30" height="30" />
+      <span class="brand-text">ContentBox</span>
+    </a>
 
-    <nav class="menu-center">
-      <a href="#benefits">O aplikaci</a>
-      <a href="#faq">FAQ</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
+    <!-- Middle links -->
+    <ul class="nav-links">
+      <li><a href="#o-aplikaci">O aplikaci</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
 
-    <div class="menu-right">
-      <!-- Language dropdown -->
-      <div class="lang-switch">
-        <img src="Vector.svg" alt="Language" class="lang-icon">
-        <ul class="lang-dropdown">
-          <li data-lang="cs">Čeština</li>
-          <li data-lang="en">English</li>
+    <!-- Right side: language + login -->
+    <div class="nav-cta">
+      <!-- Language -->
+      <div class="lang" id="lang">
+        <button id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="Změnit jazyk">
+          <img src="Vector.svg" alt="" width="24" height="24" />
+          <span id="langCode">CS</span>
+        </button>
+        <ul class="lang-menu" id="langMenu" role="menu" aria-label="Výběr jazyka">
+          <li role="menuitem" data-lang="cs" class="active">
+            <span>Čeština</span><span class="tick">✓</span>
+          </li>
+          <li role="menuitem" data-lang="en">
+            <span>English</span><span class="tick">✓</span>
+          </li>
         </ul>
       </div>
 
       <!-- Login -->
-      <a href="https://contentbox.cz/login" class="btn-login">Log in</a>
+      <a class="login-btn" href="https://contentbox.cz/login" target="_blank" rel="noopener">Log in</a>
     </div>
-  </header>
+  </nav>
+</header>
 
   <!-- HERO -->
   <section id="hero">
