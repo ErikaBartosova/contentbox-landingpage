@@ -1,116 +1,72 @@
-/* =========================
-   Smooth scroll (CTA + nav)
-   ========================= */
-function scrollToId(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
+/* Smooth scroll */
+function scrollToId(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({behavior:"smooth",block:"start"});
 }
-
-document.getElementById("toKontakt")?.addEventListener("click", () => scrollToId("kontakt"));
-document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
-  a.addEventListener("click", e => {
+document.getElementById("toKontakt")?.addEventListener("click",()=>scrollToId("kontakt"));
+document.querySelectorAll('.nav-link[href^="#"]').forEach(a=>{
+  a.addEventListener("click",e=>{
     e.preventDefault();
-    const id = a.getAttribute("href").slice(1);
-    scrollToId(id);
+    scrollToId(a.getAttribute("href").slice(1));
   });
 });
 
-/* =========================
-   FAQ toggle (accordion)
-   ========================= */
-document.querySelectorAll(".faq-item").forEach(item => {
-  const btn = item.querySelector(".faq-question");
-  btn.addEventListener("click", () => {
+/* FAQ toggle */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.querySelector(".faq-question").addEventListener("click",()=>{
     item.classList.toggle("open");
   });
 });
 
-/* =========================
-   Copy email to clipboard
-   ========================= */
-document.getElementById("copyEmail")?.addEventListener("click", () => {
-  navigator.clipboard.writeText("info@contentbakery.cz").then(() => {
-    const b = document.getElementById("copyEmail");
-    if (!b) return;
-    const prev = b.textContent;
-    b.textContent = "Zkopírováno!";
-    setTimeout(() => (b.textContent = prev), 1200);
+/* Copy email */
+document.getElementById("copyEmail")?.addEventListener("click",()=>{
+  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
+    const b=document.getElementById("copyEmail");
+    const prev=b.textContent;
+    b.textContent="Zkopírováno!";
+    setTimeout(()=>b.textContent=prev,1200);
   });
 });
 
-/* =========================
-   Language switcher
-   - drží se otevřené na hover i focus
-   - ukládá zvolený jazyk do localStorage
-   ========================= */
-(function initLang() {
-  const langBtn = document.getElementById("langBtn");
-  const langMenu = document.getElementById("langMenu");
-  const langWrap = document.getElementById("lang");
-  const langCurrent = document.getElementById("langCurrent");
+/* Language dropdown (hover i klik) */
+(function(){
+  const wrap=document.getElementById("lang");
+  const btn=document.getElementById("langBtn");
+  const menu=document.getElementById("langMenu");
+  const current=document.getElementById("langCurrent");
+  if(!wrap||!btn||!menu||!current) return;
 
-  if (!langBtn || !langMenu || !langWrap || !langCurrent) return;
+  const saved=localStorage.getItem("cb_lang")||"cs";
+  current.textContent=saved; mark(saved);
 
-  // nastav aktuální podle localStorage
-  const saved = localStorage.getItem("cb_lang") || "cs";
-  langCurrent.textContent = saved;
-  markActive(saved);
+  let timer=null;
+  function open(){ menu.classList.add("show"); btn.setAttribute("aria-expanded","true"); }
+  function close(){ menu.classList.remove("show"); btn.setAttribute("aria-expanded","false"); }
 
-  let hoverTimer = null;
-
-  function openMenu() {
-    langMenu.classList.add("show");
-    langBtn.setAttribute("aria-expanded", "true");
-  }
-  function closeMenu() {
-    langMenu.classList.remove("show");
-    langBtn.setAttribute("aria-expanded", "false");
-  }
-
-  langBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    langMenu.classList.contains("show") ? closeMenu() : openMenu();
+  btn.addEventListener("click",e=>{ e.stopPropagation(); menu.classList.contains("show")?close():open(); });
+  [wrap,menu].forEach(el=>{
+    el.addEventListener("mouseenter",()=>{ clearTimeout(timer); open(); });
+    el.addEventListener("mouseleave",()=>{ timer=setTimeout(close,120); });
   });
+  document.addEventListener("click",e=>{ if(!wrap.contains(e.target)) close(); });
 
-  // držet otevřené při najetí myší
-  [langWrap, langMenu].forEach(el => {
-    el.addEventListener("mouseenter", () => {
-      clearTimeout(hoverTimer);
-      openMenu();
-    });
-    el.addEventListener("mouseleave", () => {
-      hoverTimer = setTimeout(closeMenu, 120);
+  menu.querySelectorAll("li").forEach(li=>{
+    li.addEventListener("click",()=>{
+      const code=li.dataset.lang;
+      current.textContent=code;
+      localStorage.setItem("cb_lang",code);
+      mark(code);
+      close();
     });
   });
 
-  // volba jazyka
-  langMenu.querySelectorAll("li").forEach(li => {
-    li.addEventListener("click", () => {
-      const code = li.dataset.lang;
-      langCurrent.textContent = code;
-      localStorage.setItem("cb_lang", code);
-      markActive(code);
-      closeMenu();
-      // případná budoucí logika překladu může žít tady
-    });
-  });
-
-  // klik mimo zavře
-  document.addEventListener("click", (e) => {
-    if (!langWrap.contains(e.target)) closeMenu();
-  });
-
-  function markActive(code) {
-    langMenu.querySelectorAll("li").forEach(li => {
-      li.classList.toggle("active", li.dataset.lang === code);
-    });
+  function mark(code){
+    menu.querySelectorAll("li").forEach(li=>li.classList.toggle("active",li.dataset.lang===code));
   }
 })();
 
-/* =========================
-   Vanta HALO background
-   ========================= */
+/* VANTA HALO background */
 VANTA.HALO({
   el: "#hero",
   mouseControls: true,
@@ -118,8 +74,8 @@ VANTA.HALO({
   gyroControls: false,
   minHeight: 200.00,
   minWidth: 200.00,
-  baseColor: 0x442ed2,        // #442ed2
-  backgroundColor: 0xd7d7ed,  // #d7d7ed (ladí s body bg)
+  baseColor: 0x442ed2,
+  backgroundColor: 0xd7d7ed,
   amplitudeFactor: 3.00,
   size: 1.60
 });
