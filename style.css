@@ -1,122 +1,82 @@
-/* ✅ Globální styly */
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   background: #fff;
   color: #121212;
 }
 
-h1, h2, h3 {
-  font-family: "Oswald", sans-serif;
-}
-
-/* ✅ NAVBAR */
-.navbar {
+/* Header */
+.menu {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 44px);
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 58px;
-  padding: 10px 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
+  top: 0; left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.9);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 40px;
   z-index: 1000;
-  backdrop-filter: blur(10px);
 }
+.menu .logo { width: 30px; height: 30px; }
+.menu .logo-text { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; margin-left: 8px; }
+.menu-center a { margin: 0 10px; text-decoration: none; color: #121212; font-size: 16px; }
+.menu-center a:hover { color: #6D66C5; }
+.menu-right { display: flex; align-items: center; gap: 16px; }
 
-.box-with-logo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
+/* Language dropdown */
+.lang-switch { position: relative; cursor: pointer; }
+.lang-icon { width: 24px; height: 24px; }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: 35px; right: 0;
+  background: white; border: 1px solid #ccc;
+  list-style: none; padding: 5px 0; margin: 0;
 }
-.logo-img {
-  width: 30px;
-  height: 30px;
+.lang-dropdown li {
+  padding: 8px 12px; cursor: pointer;
 }
-.typo-logo {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.48px;
-  color: #121212;
-}
+.lang-dropdown li:hover { background: #f0f0f0; }
+.lang-switch:hover .lang-dropdown { display: block; }
 
-/* ✅ Menu odkazy */
-.menu-buttons a {
-  margin: 0 10px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #121212;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.menu-buttons a:hover {
-  color: #6D66C5;
-}
-
-/* ✅ Right buttons */
-.buttons-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* ✅ Language switch */
-.lang-switch img {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: transform 0.2s;
-}
-.lang-switch img:hover {
-  transform: scale(1.1);
-}
-
-/* ✅ Login button */
+/* Buttons */
 .btn-login {
   background: #6D66C5;
-  color: white;
-  padding: 10px 30px;
-  border-radius: 9000px;
-  font-family: "Wix Madefor Text", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  color: white; text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: 0.3s;
 }
-.btn-login:hover {
-  background: #2C2498;
-  transform: scale(1.05);
-}
+.btn-login:hover { background: #2C2498; }
 
-/* ✅ Demo obsah */
-.hero {
-  margin-top: 120px;
-  padding: 80px 20px;
-  text-align: center;
-}
 .btn-primary {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: white;
-  border: 2px solid #121212;
-  border-radius: 29px;
-  font-family: "Inter", sans-serif;
-  font-style: italic;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  background: black; color: white;
+  padding: 12px 24px; border: none;
+  border-radius: 50px; cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
 }
-.btn-primary:hover {
-  background: #2CCE7F;
-  transform: scale(1.05);
-}
+.btn-primary:hover { transform: scale(1.05); background: #6D66C5; }
 
-section {
-  padding: 100px 20px;
+.btn-secondary {
+  background: white; border: 1px solid #121212;
+  padding: 8px 20px; border-radius: 25px;
+  cursor: pointer; transition: 0.3s;
 }
+.btn-secondary:hover { background: #86FFC3; }
+
+/* Hero */
+#hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+#hero h1 { font-family: 'Oswald', sans-serif; font-size: 48px; }
+
+/* Sections */
+section { padding: 100px 40px; }
+#benefits-title { font-size: 36px; text-align: center; }
+.benefits-container { display: flex; gap: 30px; justify-content: center; }
+.benefit { background: #eee; padding: 20px; border-radius: 12px; width: 30%; }
+
+/* FAQ */
+.faq-item { border-bottom: 1px solid #ccc; padding: 15px 0; }
+.faq-question { display: flex; justify-content: space-between; cursor: pointer; }
+.faq-answer { display: none; padding-top: 10px; }
+
+/* Kontakt */
+#kontakt { text-align: center; background: linear-gradient(180deg, white, #9691D4); }
+#kontakt footer { margin-top: 50px; font-size: 14px; }
