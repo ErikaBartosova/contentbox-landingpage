@@ -66,8 +66,8 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
   }
 })();
 
-/* ===== VANTA DOTS background ===== */
-VANTA.DOTS({
+/* ===== VANTA BIRDS background (nové parametry) ===== */
+VANTA.BIRDS({
   el: "#hero",
   mouseControls: true,
   touchControls: true,
@@ -76,10 +76,14 @@ VANTA.DOTS({
   minWidth: 200.00,
   scale: 1.00,
   scaleMobile: 1.00,
-  color: 0x1111ed,
-  color2: 0x8e6a4a,
-  backgroundColor: 0xe1e1e1,
-  size: 1.90,
-  spacing: 10.00,
-  showLines: false
+  backgroundColor: 0xebebeb,
+  color1: 0x1933a0,
+  color2: 0x182861,
+  colorMode: "lerp",
+  birdSize: 0.9,
+  wingSpan: 25.0,
+  quantity: 3.6,
+  separation: 55.0,
+  alignment: 50.0,
+  cohesion: 20.0
 });
