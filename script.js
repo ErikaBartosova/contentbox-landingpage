@@ -23,14 +23,12 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
     const ans = item.querySelector(".faq-answer");
     if(!btn || !ans) return;
 
-    // zavřít – vynulovat výšku
     const collapse = () => {
       ans.style.maxHeight = "0px";
       item.classList.remove("open");
       btn.setAttribute("aria-expanded","false");
     };
 
-    // otevřít – nastavit scrollHeight
     const expand = () => {
       item.classList.add("open");
       ans.style.maxHeight = ans.scrollHeight + "px";
@@ -39,12 +37,17 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
 
     btn.addEventListener("click", ()=>{
       const isOpen = item.classList.contains("open");
-      // zavřít ostatní (volitelné: akordeon)
-      items.forEach(i=>{ if(i!==item){ const a=i.querySelector(".faq-answer"); if(a){a.style.maxHeight="0px";} i.classList.remove("open"); i.querySelector(".faq-question")?.setAttribute("aria-expanded","false"); }});
+      // akordeon – zavřít ostatní
+      items.forEach(i=>{
+        if(i!==item){
+          i.classList.remove("open");
+          i.querySelector(".faq-answer").style.maxHeight="0px";
+          i.querySelector(".faq-question")?.setAttribute("aria-expanded","false");
+        }
+      });
       isOpen ? collapse() : expand();
     });
 
-    // při resize přepočítej výšku, pokud je otevřené
     window.addEventListener("resize", ()=>{
       if(item.classList.contains("open")){
         ans.style.maxHeight = ans.scrollHeight + "px";
@@ -53,16 +56,20 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
   });
 })();
 
-
-/* ===== Copy email ===== */
+/* ===== Copy email (včetně vizuálního stavu "Zkopírováno!") ===== */
 document.getElementById("copyEmail")?.addEventListener("click", () => {
-  navigator.clipboard.writeText("info@contentbakery.cz").then(() => {
-    const b = document.getElementById("copyEmail");
-    if (!b) return;
-    const prev = b.textContent;
-    b.textContent = "Zkopírováno!";
-    setTimeout(() => (b.textContent = prev), 1200);
-  }).catch(()=>{ /* tiché selhání (např. http, safari) */ });
+  const btn = document.getElementById("copyEmail");
+  const label = btn.querySelector(".copy-text");
+  const old = label.textContent;
+
+  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
+    btn.classList.add("copied");
+    label.textContent = "Zkopírováno!";
+    setTimeout(()=>{
+      btn.classList.remove("copied");
+      label.textContent = old;
+    }, 1200);
+  }).catch(()=>{ /* tiché selhání */ });
 });
 
 /* ===== Language dropdown (hover i klik) ===== */
@@ -108,7 +115,7 @@ document.getElementById("copyEmail")?.addEventListener("click", () => {
   }
 })();
 
-/* ===== VANTA DOTS background (jen hero) – guard na dostupnost knihovny ===== */
+/* ===== VANTA DOTS background (jen hero) – guard ===== */
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.querySelector("#hero");
   if (!el || typeof VANTA === "undefined" || !VANTA.DOTS) return;
@@ -123,27 +130,23 @@ window.addEventListener("DOMContentLoaded", () => {
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      color: 0x0542e8,       // opravený hex
+      color: 0x0542e8,
       backgroundColor: 0xe9eaf0,
       showLines: false,
       size: 1.9,
       spacing: 10.0
     });
-  } catch(e){ /* tiché selhání, stránka běží dál */ }
+  } catch(e){ /* tiché selhání */ }
 });
 
-/* ==========
-   BENEFITY: lazy-loading videí + fade-in bloků (s fallbackem)
-   ========== */
+/* ===== Benefity: lazy-load videí + fade-in ===== */
 (function(){
   const blocks = document.querySelectorAll('.benefit-block.fade-on-scroll');
   const videos = document.querySelectorAll('.benefit-video');
 
-  // Fallback když IntersectionObserver není
   const hasIO = "IntersectionObserver" in window;
 
   if (hasIO) {
-    // Fade-in bloků
     const blockObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -154,7 +157,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.2 });
     blocks.forEach(b => blockObserver.observe(b));
 
-    // Lazy-load + autoplay/pause
     const videoObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const video  = entry.target;
@@ -164,7 +166,7 @@ window.addEventListener("DOMContentLoaded", () => {
             source.src = source.dataset.src;
             video.load();
           }
-          video.play().catch(()=>{ /* ignoruj autoplay blok */ });
+          video.play().catch(()=>{});
         } else {
           video.pause();
         }
@@ -172,7 +174,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.5 });
     videos.forEach(v => videoObserver.observe(v));
   } else {
-    // Jednoduchý fallback: vše viditelné a videa hned běží
     blocks.forEach(b => b.classList.add('visible'));
     videos.forEach(v => {
       const s = v.querySelector('source');
@@ -181,14 +182,3 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 })();
-
-// Copy email (ponech stejné ID copyEmail)
-document.getElementById("copyEmail")?.addEventListener("click",()=>{
-  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
-    const b=document.getElementById("copyEmail");
-    const prev=b.textContent;
-    b.textContent="Zkopírováno!";
-    setTimeout(()=>b.textContent=prev,1200);
-  });
-});
-
