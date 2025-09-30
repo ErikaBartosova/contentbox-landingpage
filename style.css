@@ -228,3 +228,31 @@ section { padding: 100px 40px; }
   .nav-links{ display: none; } /* zjednodušíme – bez burgeru */
 }
 
+/* === 1) NAV šířka ~80 % na desktopu === */
+.nav{
+  /* místo fixního max-width použíjeme fluidní šířku */
+  width: clamp(320px, 80%, 1280px);
+  max-width: 1280px;     /* upper cap zůstává */
+  margin: 0 auto;
+}
+
+/* === 2) zrušit elipsu/outline u jazykového tlačítka === */
+#langBtn{
+  width: auto; height: auto;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;            /* jemné zaoblení místo kruhu */
+  background: transparent;        /* žádný bílý “plátek” */
+  box-shadow: none;               /* žádný outline */
+}
+#langBtn:hover{
+  background: rgba(0,0,0,.05);    /* decentní hover */
+  transform: translateY(-1px);    /* drobná animace */
+  box-shadow: 0 6px 14px rgba(0,0,0,.06);
+}
+
+/* === 3) ať začíná Vanta hned od vršku stránky === */
+html, body{ margin: 0; }          /* eliminuje defaultní top margin */
+.site-header{ top: 0; }           /* lišta přilepená úplně nahoru */
+#hero{ margin-top: 0; }           /* jistota, že hero nezačíná níže */
+
