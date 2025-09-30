@@ -8,16 +8,16 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- CSS (verzování kvůli cache) -->
-  <link rel="stylesheet" href="styles.css?v=5">
+  <!-- CSS (cache-bust) -->
+  <link rel="stylesheet" href="styles.css?v=6">
 
-  <!-- Vanta HALO (pozadí hero) -->
+  <!-- Vanta HALO -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
+  <!-- NAV -->
   <header class="nav-wrap">
     <nav class="nav-pill" aria-label="Hlavní navigace">
       <a class="brand" href="index.html" aria-label="ContentBox – domů" title="ContentBox">
@@ -32,7 +32,6 @@
       </ul>
 
       <div class="nav-actions">
-        <!-- Language dropdown -->
         <div class="lang" id="lang">
           <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Změnit jazyk">
             <img src="Vector.svg" alt="" class="globe" width="18" height="18">
@@ -50,7 +49,7 @@
     </nav>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section id="hero" class="hero">
     <div class="hero-inner">
       <h1 class="hero-title">
@@ -73,7 +72,7 @@
     </div>
   </section>
 
-  <!-- ===== O APLIKACI (výcuc pro ukotvení nav) ===== -->
+  <!-- O APLIKACI (výcuc) -->
   <section id="o-aplikaci" class="section">
     <div class="container">
       <h2 class="h2">Pro koho je ContentBox ideální?</h2>
@@ -104,7 +103,7 @@
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- FAQ -->
   <section id="faq" class="section">
     <div class="container">
       <h2 class="h2">FAQ – Nejčastější dotazy</h2>
@@ -127,7 +126,7 @@
         <div class="faq-item">
           <button class="faq-question"><span>Jak vypadá proces přípravy kampaně?</span><b class="toggle">+</b></button>
           <div class="faq-answer">
-            Projekt založíte během pár kliknutí, přidáte kolegy a z katalogu vyberete potřebné formáty. Vyplníte brief pro grafika a/nebo copywritera, komunikace probíhá v projektovém chatu. V aplikaci můžete provádět validace, sledovat náklady a po schválení dostanete hotové grafiky i s otevřenými daty na zvolené úložiště.
+            Projekt založíte během pár kliknutí, přidáte kolegy a z katalogu vyberete potřebné formáty… Po schválení dostanete hotové grafiky i s otevřenými daty na zvolené úložiště.
           </div>
         </div>
 
@@ -155,7 +154,7 @@
     </div>
   </section>
 
-  <!-- ===== KONTAKT ===== -->
+  <!-- KONTAKT -->
   <section id="kontakt" class="kontakt">
     <div class="container narrow">
       <p class="contact-lead">
@@ -174,6 +173,6 @@
   </section>
 
   <!-- JS -->
-  <script src="script.js?v=5" defer></script>
+  <script src="script.js?v=6" defer></script>
 </body>
 </html>
