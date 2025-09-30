@@ -89,109 +89,45 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* =======================
-   KLÍČOVÉ BENEFITY
-   ======================= */
-.benefits {
-  background:#fff;
-  padding: 120px 24px 120px;
-  scroll-margin-top: 120px; /* aby anchor z menu nelezl pod fixed header */
-}
+/* ==========
+   BENEFITY: lazy-loading videí + fade-in bloků
+   ========== */
+(function(){
+  const blocks = document.querySelectorAll('.benefit-block.fade-on-scroll');
+  const videos = document.querySelectorAll('.benefit-video');
 
-.benefits-head {
-  max-width: 1691px;
-  margin: 0 auto 80px auto;
-  text-align: center;
-}
+  // Fade-in bloků
+  const blockObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        blockObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
 
-.benefits-head h2{
-  color:#121212; font-family:'Oswald', sans-serif; font-weight:400;
-  font-size:60px; line-height:83.6px; margin:0 0 38px 0;
-}
-.benefits-lead{
-  max-width: 787px; margin:0 auto;
-  color:#121212; font-family:'Inter', sans-serif; font-weight:400;
-  font-size:24px; line-height:32px;
-}
-.benefits-lead .dash{ color:#444B54; }
-.benefits-lead .green{ color:#00CC66; }
-.benefits-lead .dot{ color:#121212; }
+  blocks.forEach(b=>blockObserver.observe(b));
 
-/* bloky 50/50 */
-.benefit-block{
-  max-width: 1691px;
-  margin: 0 auto 80px auto;
-  background:#EEEEEE;
-  border-radius:24px;
-  padding:80px 44px;
-  display:flex; gap:100px; align-items:center; justify-content:center;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-  transform: translateY(12px); opacity:0;
-  transition: opacity .5s ease, transform .5s ease;
-}
-.benefit-block.visible{
-  transform: translateY(0); opacity:1;
-}
-.benefit-block.reverse{ flex-direction: row-reverse; }
+  // Lazy-loading videí (pustíme až když je blok vidět)
+  const videoObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const video = entry.target;
+      const source = video.querySelector('source');
+      if(entry.isIntersecting){
+        if(source && source.dataset.src && !source.src){
+          source.src = source.dataset.src; // dosadíme skutečný src
+          video.load();
+        }
+        // automatické přehrání jen když je na obrazovce
+        video.play().catch(()=>{/* ignoruj autoplay block */});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
 
-.benefit-copy{ width: 481px; max-width: 100%; }
-.benefit-copy h3{
-  color:#121212; font-family:'Oswald', sans-serif; font-weight:400;
-  font-size:40px; line-height:50px; margin:0 0 24px 0;
-}
-.benefit-copy p{
-  color:#121212; font-family:'Inter', sans-serif; font-weight:400;
-  font-size:20px; line-height:30.8px; margin:0 0 24px 0;
-}
-
-/* CTA v blocích (stejné chování jako jinde: lehké zvětšení + glow) */
-.btn-cta{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:8px 20px; border-radius:53px; text-decoration:none;
-  background:#121212; color:#fff;
-  font-family:'Oswald', sans-serif; font-weight:700; font-size:20px; line-height:30.8px;
-  letter-spacing:.4px;
-  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease, background-color .18s ease;
-}
-.btn-cta:hover{
-  transform: scale(1.03);
-  filter: brightness(0.95);
-  box-shadow: 0 0 18px rgba(18,18,18,.25);
-}
-
-/* Video box */
-.benefit-media{
-  width: 810px; max-width: 100%;
-}
-.benefit-video{
-  width: 100%; height: auto; display:block;
-  border-radius:16px; outline:2px solid #B3B3B3;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.benefit-video:hover{
-  transform: scale(1.01);
-  box-shadow: 0 10px 26px rgba(0,0,0,.12);
-}
-
-/* Responsivita */
-@media (max-width: 1200px){
-  .benefit-block{ gap:60px; }
-  .benefit-media{ width: 620px; }
-}
-@media (max-width: 992px){
-  .benefits{ padding: 80px 20px; }
-  .benefits-head h2{ font-size:40px; line-height:50px; }
-  .benefit-block, .benefit-block.reverse{ flex-direction: column; gap:40px; padding: 40px 24px; }
-  .benefit-copy{ width:100%; }
-  .benefit-media{ width:100%; }
-}
-@media (max-width: 480px){
-  .benefits-head h2{ font-size:32px; line-height:40px; }
-  .benefits-lead{ font-size:18px; line-height:26px; }
-  .benefit-copy h3{ font-size:28px; line-height:36px; }
-  .benefit-copy p{ font-size:16px; line-height:24px; }
-  .btn-cta{ font-size:18px; }
-}
+  videos.forEach(v=>videoObserver.observe(v));
+})();
 
 
 
