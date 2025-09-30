@@ -66,24 +66,23 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
   }
 })();
 
-/* ===== VANTA BIRDS background (nové parametry) ===== */
-VANTA.BIRDS({
-  el: "#hero",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  backgroundColor: 0xebebeb,
-  color1: 0x1933a0,
-  color2: 0x182861,
-  colorMode: "lerp",
-  birdSize: 0.9,
-  wingSpan: 25.0,
-  quantity: 3.6,
-  separation: 55.0,
-  alignment: 50.0,
-  cohesion: 20.0
+// VANTA BIRDS background (fix: správný selector + jistota po načtení)
+window.addEventListener("DOMContentLoaded", function () {
+  const el = document.querySelector("#hero");
+  if (!el) return; // bezpečnostní check
+
+  VANTA.BIRDS({
+    el: el,
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    backgroundColor: 0xebebeb,
+    color1: 0x1c2f87,
+    color2: 0x182861,
+    quantity: 4.00
+  });
 });
