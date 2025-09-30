@@ -1,37 +1,20 @@
 /* ===== Smooth scroll ===== */
 function scrollToId(id){
-  const el = document.getElementById(id);
+  const el=document.getElementById(id);
   if(!el) return;
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  el.scrollIntoView({behavior:"smooth",block:"start"});
 }
-document.getElementById("toKontakt")?.addEventListener("click",()=>scrollToId("kontakt"));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener("click",e=>{
-    const hash = a.getAttribute("href");
-    if(hash && hash.length>1){
+    const hash=a.getAttribute("href");
+    if(hash.length>1){
       e.preventDefault();
       scrollToId(hash.slice(1));
     }
   });
 });
 
-/* ===== FAQ toggle (s plynulou animací) ===== */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  const q = item.querySelector(".faq-question");
-  const a = item.querySelector(".faq-answer");
-  q.addEventListener("click",()=>{
-    const open = item.classList.toggle("open");
-    if(open){
-      a.style.maxHeight = a.scrollHeight + "px";
-      a.style.opacity = "1";
-    }else{
-      a.style.maxHeight = "0px";
-      a.style.opacity = "0";
-    }
-  });
-});
-
-/* ===== Language dropdown (hover + klik) ===== */
+/* ===== Language dropdown (hover i klik) ===== */
 (function(){
   const wrap=document.getElementById("lang");
   const btn=document.getElementById("langBtn");
@@ -68,42 +51,50 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   }
 })();
 
-/* ===== VANTA DOTS (hero) ===== */
-window.addEventListener("DOMContentLoaded", () => {
-  const el = document.querySelector("#hero");
-  if (!el || !window.VANTA) return;
-
-  window.VANTA.DOTS({
-    el,
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0x0542e8,
-    backgroundColor: 0xe9eaf0,
-    showLines: false,
-    size: 1.9,
-    spacing: 10.0
+/* ===== Copy email ===== */
+document.getElementById("copyEmail")?.addEventListener("click",()=>{
+  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
+    const b=document.getElementById("copyEmail");
+    b.classList.add("copied");
+    const prev=b.querySelector("span").textContent;
+    b.querySelector("span").textContent="Zkopírováno!";
+    setTimeout(()=>{
+      b.classList.remove("copied");
+      b.querySelector("span").textContent=prev;
+    },1200);
   });
 });
 
-/* ===== BENEFITY: lazy-load videí + fade-in ===== */
-(function(){
-  const blocks = document.querySelectorAll('.benefit-block.fade-on-scroll');
-  const videos = document.querySelectorAll('.benefit-video');
+/* ===== VANTA DOTS on HERO (žádná mezera pod menu) ===== */
+window.addEventListener("DOMContentLoaded", () => {
+  const el = document.querySelector("#hero");
+  if (!el) return;
 
-  const blockObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        blockObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  blocks.forEach(b=>blockObserver.observe(b));
+  // eliminace jakékoliv "bílé mezery" pod menu
+  document.querySelector(".hero").style.paddingTop = "0";
+
+  VANTA.DOTS({
+    el,
+    mouseControls:true,
+    touchControls:true,
+    gyroControls:false,
+    minHeight:200.00,
+    minWidth:200.00,
+    scale:1.00,
+    scaleMobile:1.00,
+    color:0x0542e8,
+    backgroundColor:0xe9eaf0,
+    showLines:false,
+    size:1.9,
+    spacing:10.0
+  });
+});
+
+/* ==========
+   BENEFITY: lazy-load videí (ponecháno)
+   ========== */
+(function(){
+  const videos = document.querySelectorAll('.benefit-video');
 
   const videoObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
@@ -119,21 +110,21 @@ window.addEventListener("DOMContentLoaded", () => {
         video.pause();
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.35 });
+
   videos.forEach(v=>videoObserver.observe(v));
 })();
 
-/* ===== Copy email button ===== */
-document.getElementById("copyEmail")?.addEventListener("click",()=>{
-  const btn = document.getElementById("copyEmail");
-  const span = btn.querySelector(".copy-text");
-  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
-    const prev = span.textContent;
-    btn.classList.add("copied");
-    span.textContent = "Zkopírováno!";
-    setTimeout(()=>{
-      btn.classList.remove("copied");
-      span.textContent = prev;
-    }, 1400);
+/* ===== FAQ toggle (jen jedna otevřená) ===== */
+(function(){
+  const items=document.querySelectorAll(".faq-item");
+  items.forEach(item=>{
+    const q=item.querySelector(".faq-question");
+    q.addEventListener("click",()=>{
+      // zavřít všechny ostatní
+      items.forEach(it=>{ if(it!==item) it.classList.remove("open"); });
+      // přepnout aktuální
+      item.classList.toggle("open");
+    });
   });
-});
+})();
