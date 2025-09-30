@@ -181,3 +181,14 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 })();
+
+// Copy email (ponech stejné ID copyEmail)
+document.getElementById("copyEmail")?.addEventListener("click",()=>{
+  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
+    const b=document.getElementById("copyEmail");
+    const prev=b.textContent;
+    b.textContent="Zkopírováno!";
+    setTimeout(()=>b.textContent=prev,1200);
+  });
+});
+
