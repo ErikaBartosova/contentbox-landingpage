@@ -1,81 +1,125 @@
-/* ===== Smooth scroll na Kontakt ===== */
-function scrollToKontakt() {
-  const el = document.getElementById('kontakt');
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+/* =========================
+   Smooth scroll (CTA + nav)
+   ========================= */
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/* ===== FAQ toggle – ponechávám pro další sekce, pokud už máš markup ===== */
-document.querySelectorAll(".faq-item")?.forEach(item => {
-  const q = item.querySelector(".faq-question");
-  const a = item.querySelector(".faq-answer");
-  const t = item.querySelector(".toggle");
-  if (!q || !a) return;
-  q.addEventListener("click", () => {
-    const open = a.style.display === "block";
-    a.style.display = open ? "none" : "block";
-    if (t) t.textContent = open ? "+" : "−";
+document.getElementById("toKontakt")?.addEventListener("click", () => scrollToId("kontakt"));
+document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
+  a.addEventListener("click", e => {
+    e.preventDefault();
+    const id = a.getAttribute("href").slice(1);
+    scrollToId(id);
   });
 });
 
-/* ===== Copy email (pokud tlačítko používáš) ===== */
-function copyEmail() {
-  navigator.clipboard.writeText("info@contentbakery.cz");
-  alert("Email zkopírován!");
-}
+/* =========================
+   FAQ toggle (accordion)
+   ========================= */
+document.querySelectorAll(".faq-item").forEach(item => {
+  const btn = item.querySelector(".faq-question");
+  btn.addEventListener("click", () => {
+    item.classList.toggle("open");
+  });
+});
 
-/* ===== VANTA HALO na hero (nové pozadí) ===== */
-let vantaRef = null;
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.VANTA && document.getElementById('hero')) {
-    vantaRef = VANTA.HALO({
-      el: "#hero",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      baseColor: 0x442ed2,
-      backgroundColor: 0xd7d7ed,
-      amplitudeFactor: 3.00,
-      size: 1.60
+/* =========================
+   Copy email to clipboard
+   ========================= */
+document.getElementById("copyEmail")?.addEventListener("click", () => {
+  navigator.clipboard.writeText("info@contentbakery.cz").then(() => {
+    const b = document.getElementById("copyEmail");
+    if (!b) return;
+    const prev = b.textContent;
+    b.textContent = "Zkopírováno!";
+    setTimeout(() => (b.textContent = prev), 1200);
+  });
+});
+
+/* =========================
+   Language switcher
+   - drží se otevřené na hover i focus
+   - ukládá zvolený jazyk do localStorage
+   ========================= */
+(function initLang() {
+  const langBtn = document.getElementById("langBtn");
+  const langMenu = document.getElementById("langMenu");
+  const langWrap = document.getElementById("lang");
+  const langCurrent = document.getElementById("langCurrent");
+
+  if (!langBtn || !langMenu || !langWrap || !langCurrent) return;
+
+  // nastav aktuální podle localStorage
+  const saved = localStorage.getItem("cb_lang") || "cs";
+  langCurrent.textContent = saved;
+  markActive(saved);
+
+  let hoverTimer = null;
+
+  function openMenu() {
+    langMenu.classList.add("show");
+    langBtn.setAttribute("aria-expanded", "true");
+  }
+  function closeMenu() {
+    langMenu.classList.remove("show");
+    langBtn.setAttribute("aria-expanded", "false");
+  }
+
+  langBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    langMenu.classList.contains("show") ? closeMenu() : openMenu();
+  });
+
+  // držet otevřené při najetí myší
+  [langWrap, langMenu].forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      clearTimeout(hoverTimer);
+      openMenu();
+    });
+    el.addEventListener("mouseleave", () => {
+      hoverTimer = setTimeout(closeMenu, 120);
+    });
+  });
+
+  // volba jazyka
+  langMenu.querySelectorAll("li").forEach(li => {
+    li.addEventListener("click", () => {
+      const code = li.dataset.lang;
+      langCurrent.textContent = code;
+      localStorage.setItem("cb_lang", code);
+      markActive(code);
+      closeMenu();
+      // případná budoucí logika překladu může žít tady
+    });
+  });
+
+  // klik mimo zavře
+  document.addEventListener("click", (e) => {
+    if (!langWrap.contains(e.target)) closeMenu();
+  });
+
+  function markActive(code) {
+    langMenu.querySelectorAll("li").forEach(li => {
+      li.classList.toggle("active", li.dataset.lang === code);
     });
   }
+})();
+
+/* =========================
+   Vanta HALO background
+   ========================= */
+VANTA.HALO({
+  el: "#hero",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  baseColor: 0x442ed2,        // #442ed2
+  backgroundColor: 0xd7d7ed,  // #d7d7ed (ladí s body bg)
+  amplitudeFactor: 3.00,
+  size: 1.60
 });
-
-/* ===== Jazyková roletka – stabilní (nezmizí při přejezdu) ===== */
-const lang = document.getElementById('lang');
-const btn  = document.getElementById('langBtn');
-const menu = document.getElementById('langMenu');
-const code = document.getElementById('langCode');
-
-if (lang && btn && menu && code) {
-  let hideTimer;
-
-  const open = () => {
-    clearTimeout(hideTimer);
-    lang.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-  };
-  const close = () => {
-    hideTimer = setTimeout(() => {
-      lang.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    }, 120); // malá prodleva – pohodlné přejetí myší
-  };
-
-  btn.addEventListener('mouseenter', open);
-  btn.addEventListener('focus', open);
-  lang.addEventListener('mouseleave', close);
-  lang.addEventListener('blur', close, true);
-
-  // klik na přepnutí jazyka
-  menu.querySelectorAll('button').forEach(b => {
-    b.addEventListener('click', () => {
-      const val = b.dataset.lang;
-      code.textContent = val === 'en' ? 'en' : 'cs';
-      lang.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      // tady případně přepni texty – nyní jen vizuální přepnutí kódu
-    });
-  });
-}
