@@ -4,85 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContentBox</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Three.js + Vanta.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- HERO SEKCE -->
+  <!-- ✅ MENU -->
   <header class="navbar">
-    <div class="logo" onclick="window.location.reload()">
-      <img src="d9626402a9ef600d702598dec8648db0771490e9.png" alt="Logo">
-      <span>ContentBox</span>
+    <div class="box-with-logo" onclick="window.location.reload()">
+      <img src="https://raw.githubusercontent.com/ErikaBartosova/contentbox-landingpage/main/Logo%20(3).png" alt="Logo" class="logo-img">
+      <span class="typo-logo">ContentBox</span>
     </div>
-    <div class="nav-actions">
-      <a href="https://contentbox.cz/login" class="btn-login">Log in</a>
-      <img src="Vector.svg" alt="Lang switch" class="lang-switch">
+
+    <nav class="menu-buttons">
+      <a href="#benefits" id="menuApp">O aplikaci</a>
+      <a href="#faq" id="menuFaq">FAQ</a>
+      <a href="#kontakt" id="menuContact">Kontakt</a>
+    </nav>
+
+    <div class="buttons-right">
+      <div class="lang-switch" onclick="toggleLanguage()">
+        <img src="https://raw.githubusercontent.com/ErikaBartosova/contentbox-landingpage/main/Vector.svg" alt="Language switch">
+      </div>
+      <a href="https://contentbox.cz/login" target="_blank" class="btn-login" id="btnLogin">Log in</a>
     </div>
   </header>
 
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <h1><span class="highlight">All-in-one</span> platforma pro tvorbu online kampaní</h1>
-      <p>Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
-      <button class="btn-primary" onclick="scrollToKontakt()">Navázat spojení</button>
+  <!-- ✅ DEMO obsah pro scroll -->
+  <main>
+    <section id="hero" class="hero">
+      <h1 id="heroHeading">All-in-one platforma pro tvorbu online kampaní</h1>
+      <p id="heroSub">Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
+      <button class="btn-primary" id="btnContact">Navázat spojení</button>
+    </section>
 
-      <div class="features">
-        <span>❋ Databáze projektů</span>
-        <span>❋ Monitoring projektů</span>
-        <span>❋ Finanční report</span>
-        <span>❋ AI překlady</span>
-        <span>❋ Databáze formátů</span>
-        <span>❋ Galerie hotových grafik</span>
-        <span>❋ Flexibilní spolupráce</span>
-      </div>
-    </div>
-  </section>
+    <section id="benefits">
+      <h2>Klíčové benefity</h2>
+      <p>...</p>
+    </section>
 
-  <!-- BENEFITY -->
-  <section id="benefits" class="benefits">
-    <h2>Klíčové benefity</h2>
-    <div class="videos">
-      <video src="1.mp4" controls></video>
-      <video src="2.mp4" controls></video>
-      <video src="3.mp4" controls></video>
-    </div>
-  </section>
+    <section id="faq">
+      <h2>FAQ</h2>
+      <p>...</p>
+    </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="faq">
-    <h2>FAQ – Nejčastější dotazy</h2>
-    <div class="faq-item">
-      <div class="faq-question">Podporuje ContentBox i vícejazyčné kampaně? <span class="toggle">+</span></div>
-      <div class="faq-answer">Ano, podporuje až 21 jazyků včetně AI překladů.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">Jak funguje komunikace mezi manažery a grafiky? <span class="toggle">+</span></div>
-      <div class="faq-answer">Každý projekt má vlastní chat pro snadné sdílení.</div>
-    </div>
-  </section>
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <p>Máte zájem o spolupráci? Napište nám.</p>
+    </section>
+  </main>
 
-  <!-- KONTAKT -->
-  <section id="kontakt" class="kontakt">
-    <p>Máte zájem o spolupráci nebo se chcete na něco zeptat?<br>
-      Napište nám na <a href="mailto:info@contentbakery.cz" class="mail-link">info@contentbakery.cz</a>
-    </p>
-    <button class="btn-email" onclick="copyEmail()">📩 Zkopírovat email</button>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    2025 Content Bakery s.r.o., Salvátorská 931/8, Staré Město, 110 00 Praha
-  </footer>
-
-  <!-- Skripty -->
   <script src="script.js"></script>
 </body>
 </html>
