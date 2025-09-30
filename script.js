@@ -95,3 +95,101 @@ document.querySelectorAll(".lang-dropdown li").forEach(li => {
 
 // Nastavit výchozí jazyk
 setLanguage("cs");
+
+/* ---------- LANGUAGES (dropdown + persist) ---------- */
+const langEl   = document.getElementById('lang');
+const langBtn  = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+const langCode = document.getElementById('langCode');
+
+function setLang(code){
+  localStorage.setItem('cb_lang', code);
+  langCode.textContent = code.toUpperCase();
+  document.documentElement.setAttribute('lang', code);
+  // vizuálně aktivní položka
+  langMenu.querySelectorAll('li').forEach(li=>{
+    li.classList.toggle('active', li.dataset.lang === code);
+  });
+}
+
+// Otevření na klik (pro touch) – funguje i mimo :hover
+langBtn?.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const open = langEl.classList.toggle('open');
+  langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(open){
+    langMenu.style.opacity = '1';
+    langMenu.style.visibility = 'visible';
+    langMenu.style.transform = 'translateY(0)';
+  }else{
+    langMenu.removeAttribute('style');
+  }
+});
+
+// Výběr jazyka
+langMenu?.querySelectorAll('li').forEach(li=>{
+  li.addEventListener('click', ()=>{
+    setLang(li.dataset.lang);
+    langEl.classList.remove('open');
+    langMenu.removeAttribute('style');
+  });
+});
+
+// Klik mimo – zavřít
+document.addEventListener('click', ()=>{
+  langEl?.classList.remove('open');
+  langMenu?.removeAttribute('style');
+});
+
+// Init
+setLang(localStorage.getItem('cb_lang') || 'cs');
+
+
+/* ---------- SMOOTH SCROLL (z tvého původního kódu) ---------- */
+function scrollToKontakt() {
+  document.getElementById("kontakt").scrollIntoView({ behavior: "smooth" });
+}
+
+/* ---------- FAQ toggle (původní) ---------- */
+document.querySelectorAll(".faq-item").forEach(item => {
+  const q = item.querySelector(".faq-question");
+  const a = item.querySelector(".faq-answer");
+  const t = item.querySelector(".toggle");
+  if(!q || !a || !t) return;
+  q.addEventListener("click", () => {
+    const open = a.style.display === "block";
+    a.style.display = open ? "none" : "block";
+    t.textContent = open ? "+" : "-";
+  });
+});
+
+/* ---------- Copy email (původní) ---------- */
+function copyEmail() {
+  navigator.clipboard.writeText("info@contentbakery.cz");
+  alert("Email zkopírován!");
+}
+
+/* ---------- VANTA background (původní) ---------- */
+if(typeof VANTA !== "undefined"){
+  VANTA.BIRDS({
+    el: "#hero",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    backgroundColor: 0xebebeb,
+    color1: 0x303491,
+    color2: 0x2c2498,
+    colorMode: "lerp",
+    birdSize: 0.80,
+    wingSpan: 25.00,
+    separation: 57.00,
+    alignment: 51.00,
+    cohesion: 21.00,
+    quantity: 4.00
+  });
+}
+
