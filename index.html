@@ -5,53 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContentBox</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js"></script>
 </head>
 <body>
-  <!-- ✅ MENU -->
-  <header class="navbar">
-    <div class="box-with-logo" onclick="window.location.reload()">
-      <img src="https://raw.githubusercontent.com/ErikaBartosova/contentbox-landingpage/main/Logo%20(3).png" alt="Logo" class="logo-img">
-      <span class="typo-logo">ContentBox</span>
+  <!-- HEADER -->
+  <header class="menu">
+    <div class="menu-left">
+      <a href="index.html" class="logo-box">
+        <img src="Logo%20(3).png" alt="Logo" class="logo">
+        <span class="logo-text">ContentBox</span>
+      </a>
     </div>
 
-    <nav class="menu-buttons">
-      <a href="#benefits" id="menuApp">O aplikaci</a>
-      <a href="#faq" id="menuFaq">FAQ</a>
-      <a href="#kontakt" id="menuContact">Kontakt</a>
+    <nav class="menu-center">
+      <a href="#benefits">O aplikaci</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt">Kontakt</a>
     </nav>
 
-    <div class="buttons-right">
-      <div class="lang-switch" onclick="toggleLanguage()">
-        <img src="https://raw.githubusercontent.com/ErikaBartosova/contentbox-landingpage/main/Vector.svg" alt="Language switch">
+    <div class="menu-right">
+      <!-- Language dropdown -->
+      <div class="lang-switch">
+        <img src="Vector.svg" alt="Language" class="lang-icon">
+        <ul class="lang-dropdown">
+          <li data-lang="cs">Čeština</li>
+          <li data-lang="en">English</li>
+        </ul>
       </div>
-      <a href="https://contentbox.cz/login" target="_blank" class="btn-login" id="btnLogin">Log in</a>
+
+      <!-- Login -->
+      <a href="https://contentbox.cz/login" class="btn-login">Log in</a>
     </div>
   </header>
 
-  <!-- ✅ DEMO obsah pro scroll -->
-  <main>
-    <section id="hero" class="hero">
-      <h1 id="heroHeading">All-in-one platforma pro tvorbu online kampaní</h1>
-      <p id="heroSub">Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
-      <button class="btn-primary" id="btnContact">Navázat spojení</button>
-    </section>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1 id="hero-title">All-in-one platforma pro tvorbu online kampaní</h1>
+      <p id="hero-subtitle">Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
+      <button class="btn-primary" onclick="scrollToKontakt()" id="hero-cta">Navázat spojení</button>
+    </div>
+  </section>
 
-    <section id="benefits">
-      <h2>Klíčové benefity</h2>
-      <p>...</p>
-    </section>
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <h2 id="benefits-title">Klíčové benefity</h2>
+    <div class="benefits-container">
+      <div class="benefit">
+        <h3 id="benefit1-title">Nový projekt spustíte během pár kliknutí.</h3>
+        <p id="benefit1-text">Stačí zvolit kanály a formáty, doplnit brief a vše máte pod kontrolou.</p>
+      </div>
+      <div class="benefit">
+        <h3 id="benefit2-title">Texty i grafika vždy po ruce.</h3>
+        <p id="benefit2-text">Objednejte copywritera nebo využijte AI překlady do 21 jazyků.</p>
+      </div>
+      <div class="benefit">
+        <h3 id="benefit3-title">Finance a tým pod kontrolou.</h3>
+        <p id="benefit3-text">Sledujte náklady i komunikaci v reálném čase přímo v aplikaci.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="faq">
-      <h2>FAQ</h2>
-      <p>...</p>
-    </section>
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>FAQ – Nejčastější dotazy</h2>
+    <div class="faq-item">
+      <div class="faq-question">
+        <span id="faq1-q">Podporuje ContentBox i vícejazyčné kampaně?</span>
+        <span class="toggle">+</span>
+      </div>
+      <div class="faq-answer" id="faq1-a">
+        Ano. U každého formátu si můžete nastavit požadované jazyky.
+      </div>
+    </div>
+  </section>
 
-    <section id="kontakt">
-      <h2>Kontakt</h2>
-      <p>Máte zájem o spolupráci? Napište nám.</p>
-    </section>
-  </main>
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <h2 id="contact-title">Máte zájem o spolupráci nebo se chcete na něco zeptat?</h2>
+    <p>
+      Napište nám na 
+      <a href="mailto:info@contentbakery.cz" id="contact-mail">info@contentbakery.cz</a>
+    </p>
+    <button onclick="copyEmail()" class="btn-secondary" id="copy-btn">Zkopírovat email</button>
+    <footer>
+      <p>2025 Content Bakery s.r.o., Salvátorská 931/8, Praha</p>
+    </footer>
+  </section>
 
   <script src="script.js"></script>
 </body>
