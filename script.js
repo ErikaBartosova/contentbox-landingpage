@@ -3,7 +3,7 @@ const I18N = { dict: null };
 async function loadI18n() {
   if (I18N.dict) return I18N.dict;
   try {
-    const res = await fetch('translations.json?v=1', { cache: 'no-store' });
+    const res = await fetch('translations.json?v=2', { cache: 'no-store' });
     I18N.dict = await res.json();
   } catch (e) {
     console.warn('I18N: nepodařilo se načíst translations.json', e);
