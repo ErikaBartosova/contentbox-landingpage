@@ -489,3 +489,85 @@ a{color:inherit;text-decoration:none}
   .copy-btn{ margin: 18px auto 90px; }
 }
 
+/* ===== PATCH: Kontakt + Footer ===== */
+
+/* Zrušit nežádoucí šedý pás za sekcí (ponech gradient) */
+.contact-section { background: transparent; }
+
+/* Vyšší, vzdušnější kontakt + jemný přechod jako v návrhu */
+.contact-section .contact-gradient{
+  background: linear-gradient(180deg, #FFFFFF 0%, #EAE4F6 38%, #C9BEEB 100%);
+  padding: 160px 0 220px;
+}
+
+/* Centrovat obsah kontaktu (neovlivní jiné sekce) */
+.contact-section .container{ text-align: center; }
+
+/* Tlačítko: stejný styl jako "navázat spojení" v hero,
+   + zarovnání na střed + bez neaktivního stínu  */
+.copy-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px auto 140px;   /* přímo pod textem a hezky „na střed“ */
+  height: 52px;
+  padding: 0 24px;
+  border-radius: 29px;
+  border: 1px solid #121212;
+  background: #fff;
+  color: #121212;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: none; /* žádný stín v neaktivním stavu */
+  transition: transform .18s ease,
+              filter .18s ease,
+              box-shadow .18s ease,
+              background-color .18s ease,
+              color .18s ease,
+              border-color .18s ease;
+}
+.copy-btn:hover{
+  transform: scale(1.04);
+  background: #00CC66;
+  color: #fff;
+  border-color: #00CC66;
+  box-shadow: 0 10px 26px rgba(0, 204, 102, .25); /* zelený glow */
+}
+.copy-btn:active{ transform: scale(0.99); }
+
+/* Ikona obálky – velikost a optické srovnání s textem */
+.icon-envelope{
+  width: 20px; height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+/* Jedna čára nad footerem: divider ano, footer bez horní hranice */
+.contact-divider{
+  border: 0;
+  border-top: 1px solid #121212;
+  margin: 0 0 24px;
+}
+.footer{
+  border-top: 0 !important;  /* zrušit případnou druhou čáru */
+  padding: 12px 0 45px;      /* ~poloviční výška oproti předtím */
+  text-align: left;
+  color: #121212;
+  font-size: 16px;
+  line-height: 30.8px;
+}
+
+/* Responsivní drobnosti */
+@media (max-width:1024px){
+  .contact-section .contact-gradient{ padding: 120px 0 180px; }
+  .copy-btn{ margin-bottom: 110px; }
+}
+@media (max-width:680px){
+  .contact-section .contact-gradient{ padding: 96px 0 140px; }
+  .copy-btn{ margin: 18px auto 90px; font-size: 18px; }
+}
+
+
