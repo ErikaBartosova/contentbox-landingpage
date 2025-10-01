@@ -1,4 +1,3 @@
-
 /* ===== I18N loader & applier ===== */
 const I18N = { dict: null };
 async function loadI18n() {
@@ -73,8 +72,15 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
 
     btn.addEventListener("click", ()=>{
       const isOpen = item.classList.contains("open");
-      // zavřít ostatní (volitelné: akordeon)
-      items.forEach(i=>{ if(i!==item){ const a=i.querySelector(".faq-answer"); if(a){a.style.maxHeight="0px";} i.classList.remove("open"); i.querySelector(".faq-question")?.setAttribute("aria-expanded","false"); }});
+      // zavřít ostatní (akordeon)
+      items.forEach(i=>{
+        if(i!==item){
+          const a=i.querySelector(".faq-answer");
+          if(a){a.style.maxHeight="0px";}
+          i.classList.remove("open");
+          i.querySelector(".faq-question")?.setAttribute("aria-expanded","false");
+        }
+      });
       isOpen ? collapse() : expand();
     });
 
@@ -87,14 +93,21 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a => {
   });
 })();
 
-
-/* ===== Copy email ===== */
+/* ===== Copy email (i18n) ===== */
 document.getElementById("copyEmail")?.addEventListener("click", () => {
   navigator.clipboard.writeText("info@contentbakery.cz").then(() => {
     const b = document.getElementById("copyEmail");
     if (!b) return;
     const prev = b.textContent;
-    b.textContent = "Zkopírováno!";
+
+    // původně:
+    // b.textContent = "Zkopírováno!";
+
+    // nově – vezme text podle zvoleného jazyka (fallback na CZ)
+    const lang = localStorage.getItem("cb_lang") || "cs";
+    const copied = (I18N?.dict?.[lang]?.["contact.copied"]) || "Zkopírováno!";
+    b.textContent = copied;
+
     setTimeout(() => (b.textContent = prev), 1200);
   }).catch(()=>{ /* tiché selhání (např. http, safari) */ });
 });
@@ -110,9 +123,10 @@ document.getElementById("copyEmail")?.addEventListener("click", () => {
   const saved = localStorage.getItem("cb_lang") || "cs";
   current.textContent = saved; mark(saved);
 
-  
+  // načti překlady a aplikuj uložený jazyk po loadu
   loadI18n().then(() => applyI18n(saved));
-let timer = null;
+
+  let timer = null;
   const open  = () => { menu.classList.add("show");  btn.setAttribute("aria-expanded","true");  };
   const close = () => { menu.classList.remove("show"); btn.setAttribute("aria-expanded","false"); };
 
@@ -135,7 +149,7 @@ let timer = null;
       mark(code);
       close();
       applyI18n(code);
-});
+    });
   });
 
   function mark(code){
@@ -218,13 +232,3 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 })();
-
-// Copy email (ponech stejné ID copyEmail)
-document.getElementById("copyEmail")?.addEventListener("click",()=>{
-  navigator.clipboard.writeText("info@contentbakery.cz").then(()=>{
-    const b=document.getElementById("copyEmail");
-    const prev=b.textContent;
-    b.textContent="Zkopírováno!";
-    setTimeout(()=>b.textContent=prev,1200);
-  });
-});
