@@ -1,3 +1,37 @@
+
+/* ===== I18N loader & applier ===== */
+const I18N = { dict: null };
+async function loadI18n() {
+  if (I18N.dict) return I18N.dict;
+  try {
+    const res = await fetch('translations.json?v=1', { cache: 'no-store' });
+    I18N.dict = await res.json();
+  } catch (e) {
+    console.warn('I18N: nepodařilo se načíst translations.json', e);
+    I18N.dict = { cs: {}, en: {} };
+  }
+  return I18N.dict;
+}
+function applyI18n(lang = 'cs') {
+  const dict = I18N.dict?.[lang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (key && dict[key] != null) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (key && dict[key] != null) el.innerHTML = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const pairs = el.dataset.i18nAttr.split(',');
+    pairs.forEach(pair => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && key && dict[key] != null) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.documentElement.lang = lang;
+}
+
 /* ===== Smooth scroll ===== */
 function scrollToId(id){
   const el = document.getElementById(id);
@@ -76,7 +110,9 @@ document.getElementById("copyEmail")?.addEventListener("click", () => {
   const saved = localStorage.getItem("cb_lang") || "cs";
   current.textContent = saved; mark(saved);
 
-  let timer = null;
+  
+  loadI18n().then(() => applyI18n(saved));
+let timer = null;
   const open  = () => { menu.classList.add("show");  btn.setAttribute("aria-expanded","true");  };
   const close = () => { menu.classList.remove("show"); btn.setAttribute("aria-expanded","false"); };
 
@@ -98,7 +134,8 @@ document.getElementById("copyEmail")?.addEventListener("click", () => {
       localStorage.setItem("cb_lang", code);
       mark(code);
       close();
-    });
+      applyI18n(code);
+});
   });
 
   function mark(code){
