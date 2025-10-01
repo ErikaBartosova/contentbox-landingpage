@@ -42,7 +42,15 @@
     "footer.txt": "2025 Content Bakery s.r.o., Salvátorská 931/8, Staré Město, 110 00 Praha",
     "hero.title": "<span class=\"accent\">All-in-one</span> platforma pro tvorbu<br/>online kampaní",
     "benefits.lead": "Ideální pro značky působící online na více trzích, e-shopy hledající centralizovanou výrobu vizuálů i agentury, které chtějí zefektivnit přípravu kampaní <span class=\"more\">(a mnoho dalších)</span>.",
-    "contact.title": "Máte zájem o spolupráci nebo se chcete na něco zeptat? <br/> Napište nám na <a class=\"contact-mail\" href=\"mailto:info@contentbakery.cz\">info@contentbakery.cz</a>"
+    "contact.title": "Máte zájem o spolupráci nebo se chcete na něco zeptat? <br/> Napište nám na <a class=\"contact-mail\" href=\"mailto:info@contentbakery.cz\">info@contentbakery.cz</a>",
+
+    "__added__nav.login": "Log in",
+    "__added__nav.aria": "Hlavní navigace",
+    "__added__brand.home": "ContentBox – domů",
+    "__added__brand.title": "ContentBox",
+    "__added__lang.aria": "Změnit jazyk",
+    "__added__section.contact": "Kontakt",
+    "__added__contact.copy.aria": "Zkopírovat e-mail"
   },
   "en": {
     "nav.about": "About",
@@ -87,6 +95,14 @@
     "footer.txt": "2025 Content Bakery s.r.o., Salvátorská 931/8, Old Town, 110 00 Prague",
     "hero.title": "<span class=\"accent\">All-in-one</span> platform for<br/>online campaigns",
     "benefits.lead": "Ideal for brands active across multiple markets, e-shops seeking centralized visual production, and agencies that want to streamline campaign preparation <span class=\"more\">(and many others)</span>.",
-    "contact.title": "Interested in working with us or have a question? <br/> Email us at <a class=\"contact-mail\" href=\"mailto:info@contentbakery.cz\">info@contentbakery.cz</a>"
+    "contact.title": "Interested in working with us or have a question? <br/> Email us at <a class=\"contact-mail\" href=\"mailto:info@contentbakery.cz\">info@contentbakery.cz</a>",
+
+    "__added__nav.login": "Log in",
+    "__added__nav.aria": "Main navigation",
+    "__added__brand.home": "ContentBox – home",
+    "__added__brand.title": "ContentBox",
+    "__added__lang.aria": "Change language",
+    "__added__section.contact": "Contact",
+    "__added__contact.copy.aria": "Copy email address"
   }
 }
