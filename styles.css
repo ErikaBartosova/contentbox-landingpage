@@ -707,7 +707,7 @@ a{color:inherit;text-decoration:none}
 }
 
 /* FIALOVÝ HOVER PRO „Vyzkoušet“ */
-:root{ --cb-purple:#7C3AED; } /* použij libovolnou, případně přepiš svou firemní fialovou */
+:root{ --cb-purple:#6D66C5; } /* použij libovolnou, případně přepiš svou firemní fialovou */
 
 .btn-try{
   background:#121212;
@@ -727,3 +727,66 @@ a{color:inherit;text-decoration:none}
   transform:translateY(0);
   box-shadow:0 6px 16px rgba(0,0,0,.2);
 }
+
+/* === BENEFITY – typografie přesně dle zadání === */
+
+/* Header sekce */
+.benefits-head h2{
+  font-family:'Oswald',sans-serif;
+  font-weight:400;
+  font-size:60px;
+  line-height:83.6px;
+  color:#121212;
+  margin:0 0 10px;
+}
+.benefits-head p{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:24px;
+  line-height:32px;
+  color:#121212;            /* základní text */
+  margin:0 auto;
+  max-width:980px;
+}
+.benefits-head p .more{ color:#00CC66; } /* (a mnoho dalších) */
+
+/* Textová část karet */
+.benefit-copy h3{
+  font-family:'Oswald',sans-serif;
+  font-weight:400;
+  font-size:40px;
+  line-height:50px;
+  color:#121212;
+  margin:0 0 12px;
+}
+.benefit-copy p{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:20px;
+  line-height:30.8px;
+  color:#121212;
+  max-width: 480px;         /* užší sloupec jako v návrhu */
+}
+
+/* CTA v kartách (ponechá fialový hover, jen přesná typografie) */
+.btn-try{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:20px;
+  line-height:30.8px;
+  letter-spacing:.4px;
+  padding:8px 20px;
+  border-radius:53px;
+}
+
+/* Responsivní doladění */
+@media (max-width:1024px){
+  .benefits-head h2{ font-size:48px; line-height:66px; }
+}
+@media (max-width:680px){
+  .benefits-head h2{ font-size:36px; line-height:44px; }
+  .benefits-head p{ font-size:16px; line-height:23px; }
+  .benefit-copy h3{ font-size:28px; line-height:36px; }
+  .benefit-copy p { font-size:16px; line-height:24px; }
+}
+
