@@ -433,3 +433,59 @@ a{color:inherit;text-decoration:none}
   .copy-btn{ font-size:18px; padding:10px 20px; margin-bottom:90px; }
   .footer{ padding-bottom:72px; }
 }
+
+/* ==== PATCH: Kontakt + Footer (přepiš předchozí styly) ==== */
+
+/* 1) Zrušení šedého obdélníku za sekcí */
+.contact-section{ background: transparent; }
+
+/* 2) Vzdušnější výška a jemnější gradient jako v grafice */
+.contact-section .contact-gradient{
+  background: linear-gradient(180deg, #FFFFFF 0%, #E5E0F4 38%, #BDB2E3 100%);
+  padding: 160px 0 220px; /* více „vzduchu“ nahoře i dole */
+}
+
+/* 3) Tlačítko hned pod textem – bez stínu v neaktivním stavu, s tenkou linkou */
+.copy-btn{
+  margin: 24px auto 140px;      /* přímo pod textem, rozumný rozestup od divideru */
+  background:#FFF;
+  border:1px solid #121212;     /* tenká tmavá linka jako v návrhu */
+  box-shadow:none;              /* odstraněn defaultní stín */
+  font-weight:600;
+}
+.copy-btn:hover{
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(109,102,197,.35); /* zachován aktivní efekt */
+}
+.copy-btn:active{ transform: scale(0.99); }
+
+/* 4) Ikona obálky – zarovnání a velikost */
+.icon-envelope{
+  width:20px; height:20px;
+  display:inline-block;
+  vertical-align:middle;
+  transform: translateY(-1px);  /* optické srovnání s textem */
+}
+
+/* 5) Divider a footer – drží se šířek jako benefity/FAQ */
+.contact-divider{
+  border:0;
+  border-top:1px solid #121212;
+  margin: 0 0 28px;
+}
+.footer{
+  padding: 12px 0 90px;
+  text-align:left;
+  color:#121212;
+}
+
+/* 6) Responsivní doladění (jen kontakt) */
+@media (max-width:1024px){
+  .contact-section .contact-gradient{ padding: 120px 0 180px; }
+  .copy-btn{ margin-bottom:110px; }
+}
+@media (max-width:680px){
+  .contact-section .contact-gradient{ padding: 96px 0 140px; }
+  .copy-btn{ margin: 18px auto 90px; }
+}
+
