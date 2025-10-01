@@ -5,7 +5,7 @@ body{
   margin:0;
   font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color:#121212;
-  background:#e1e1e1; /* pro případ, kdy se Vanta nenačte */
+  background:#e1e1e1; /* pro pÅ™Ã­pad, kdy se Vanta nenaÄte */
 }
 h1,h2,h3{font-family:'Oswald',sans-serif;color:#121212;margin:0 0 .4rem}
 p{margin:0 0 1rem}
@@ -24,7 +24,7 @@ a{color:inherit;text-decoration:none}
 /* ===== Nav pill ===== */
 .nav-wrap{position:fixed;top:12px;left:0;right:0;z-index:1000}
 .nav-pill{
-  width:min(80vw,1280px);
+  width: min(92vw,1640px);
   margin:0 auto;
   height:60px;
   padding:0 22px;
@@ -48,7 +48,7 @@ a{color:inherit;text-decoration:none}
   font-weight:400;
   transition:font-weight .15s ease, opacity .15s ease;
 }
-.nav-link:hover{opacity:1;font-weight:700}           /* jen bold; žádné podtržení */
+.nav-link:hover{opacity:1;font-weight:700}           /* jen bold; Å¾Ã¡dnÃ© podtrÅ¾enÃ­ */
 
 /* Akce vpravo */
 .nav-actions{justify-self:end;display:flex;align-items:center;gap:12px}
@@ -108,18 +108,18 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 10px 26px rgba(0,204,102,.25);
 }
 
-/* Tmavé tlačítko v kartách */
+/* TmavÃ© tlaÄÃ­tko v kartÃ¡ch */
 .btn-dark{
   align-self:start;background:#121212;color:#fff;border-radius:53px;padding:8px 20px;
   font:700 18px/1 'Oswald',sans-serif;letter-spacing:.4px
 }
 .btn-dark:hover{transform:scale(1.03);box-shadow:0 12px 28px rgba(0,0,0,.18);filter:brightness(.95)}
 
-/* Kopírovací */
+/* KopÃ­rovacÃ­ */
 .btn-copy{display:inline-flex;gap:10px;align-items:center;border-radius:29px;padding:12px 24px;background:#fff;border:1px solid #ddd;cursor:pointer;margin:18px auto 0;font-weight:600}
 .btn-copy:hover{transform:scale(1.03);box-shadow:0 12px 28px rgba(0,0,0,.12);filter:brightness(.98)}
 
-/* ===== Hero (100vh, centrované + „Otestováno…“ níž) ===== */
+/* ===== Hero (100vh, centrovanÃ© + â€žOtestovÃ¡noâ€¦â€œ nÃ­Å¾) ===== */
 .hero{
   position:relative;
   min-height:100vh;
@@ -157,18 +157,74 @@ a{color:inherit;text-decoration:none}
 }
 .badge:hover{transform:scale(1.04);box-shadow:0 10px 24px rgba(0,0,0,.08);filter:brightness(.98)}
 
-/* „Otestováno…“ víc dolů */
+/* â€žOtestovÃ¡noâ€¦â€œ vÃ­c dolÅ¯ */
 .tested{
   margin-top:clamp(48px, 10vh, 120px);
   font-size:16px;line-height:30.8px;font-weight:400;opacity:.8
 }
 
-/* ===== Cards / benefity (bílá sekce) ===== */
+/* ===== Cards / benefity (bÃ­lÃ¡ sekce) ===== */
 .cards{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .card{background:#F4F4F4;border-radius:20px;padding:24px;border:1px solid #E0E0E0;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 24px rgba(0,0,0,.06)}
 .btn-dark{margin-top:6px}
 
-/* ===== FAQ (bílá) ===== */
+
+/* ===== BENEFITS â€“ typografie a CTA (added) ===== */
+.benefits .benefits-head h2{
+  font-family:'Oswald', sans-serif;
+  font-weight:400;
+  font-size:48px;
+  line-height:1.2;
+  margin:0 0 12px;
+}
+.benefits .benefits-head p{
+  max-width:980px;
+  margin:0 auto;
+  font:400 18px/26px 'Inter', sans-serif;
+  color:#444;
+}
+.benefits .benefits-head .more{ color:#00CC66; }
+
+.benefit-copy h3{
+  font-family:'Oswald', sans-serif;
+  font-weight:400;
+  font-size:32px;
+  line-height:1.25;
+  margin:0 0 14px;
+}
+.benefit-copy p{
+  font:400 16px/26px 'Inter', sans-serif;
+  color:#222;
+  margin:0 0 18px;
+}
+
+/* ÄŒERNÃ‰ CTA â€žVyzkouÅ¡etâ€œ s hoverem na #6D66C5 */
+.btn-try{
+  display:inline-block;
+  padding:10px 22px;
+  border-radius:53px;
+  background:#121212;
+  color:#fff;
+  font:700 18px/1 'Oswald', sans-serif;
+  letter-spacing:.4px;
+  border:1px solid #121212;
+  transition:transform .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.btn-try:hover{
+  transform:scale(1.03);
+  background:#6D66C5;
+  border-color:#6D66C5;
+  box-shadow:0 10px 26px rgba(109,102,197,.25);
+}
+.btn-try:focus-visible{ outline:2px solid #6D66C5; outline-offset:2px; }
+
+@media (max-width:680px){
+  .benefits .benefits-head h2{ font-size:36px; line-height:44px; }
+  .benefits .benefits-head p{ font-size:16px; line-height:23px; }
+  .benefit-copy h3{ font-size:26px; line-height:32px; }
+  .benefit-copy p { font-size:15.2px; line-height:21.23px; }
+}
+/* ===== FAQ (bÃ­lÃ¡) ===== */
 .faq{margin-top:18px;border-top:1px solid #B3B3B3}
 .faq-item{border-bottom:1px solid #B3B3B3}
 .faq-question{width:100%;padding:16px 6px;background:none;border:0;text-align:left;font-size:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
@@ -198,54 +254,54 @@ a{color:inherit;text-decoration:none}
 /* ========= BENEFITS (update) ========== */
 .benefits { background:#fff; padding: 80px 0 120px; }
 
-/* ŠIRŠÍ kontejner na desktopu (≈1691px – mírně menší kvůli okrajům) */
+/* Å IRÅ Ã kontejner na desktopu (â‰ˆ1691px â€“ mÃ­rnÄ› menÅ¡Ã­ kvÅ¯li okrajÅ¯m) */
 .benefits .container { max-width: 1640px; margin: 0 auto; padding: 0 20px; }
 
-/* Větší rozestup pod headrem */
+/* VÄ›tÅ¡Ã­ rozestup pod headrem */
 .benefits-head { text-align:center; margin-bottom: 72px; } /* bylo 56px */
 
-/* Blok – širší layout a větší video */
+/* Blok â€“ Å¡irÅ¡Ã­ layout a vÄ›tÅ¡Ã­ video */
 .benefit-block{
   display:grid;
-  grid-template-columns: 1.05fr 0.95fr; /* víc místa pro video */
+  grid-template-columns: 1.05fr 0.95fr; /* vÃ­c mÃ­sta pro video */
   align-items:center;
   gap: 100px;
-  padding: 84px 48px;                 /* mírně širší polštáře */
+  padding: 84px 48px;                 /* mÃ­rnÄ› Å¡irÅ¡Ã­ polÅ¡tÃ¡Å™e */
   background:#EEEEEE;
   border-radius:24px;
   box-shadow: 0 10px 30px rgba(0,0,0,.10);
-  margin-bottom: 96px;                /* větší mezera mezi bloky */
+  margin-bottom: 96px;                /* vÄ›tÅ¡Ã­ mezera mezi bloky */
   opacity:0; transform: translateY(16px); transition: opacity .6s, transform .6s;
 }
 .benefit-block.visible{ opacity:1; transform:none; }
 
-/* přeskáčku – blok 2 má video vlevo */
+/* pÅ™eskÃ¡Äku â€“ blok 2 mÃ¡ video vlevo */
 .benefit-block.reverse{ grid-auto-flow:dense; }
 .benefit-block.reverse .benefit-media{ order:1; }
 .benefit-block.reverse .benefit-copy { order:2; }
 
-/* Větší video s pevným poměrem a bez deformace */
+/* VÄ›tÅ¡Ã­ video s pevnÃ½m pomÄ›rem a bez deformace */
 .benefit-media{
   position:relative; overflow:hidden; background:#000;
   border-radius:16px; outline:2px #B3B3B3 solid;
-  aspect-ratio: 16 / 9;               /* drží výšku, video se přizpůsobí */
+  aspect-ratio: 16 / 9;               /* drÅ¾Ã­ vÃ½Å¡ku, video se pÅ™izpÅ¯sobÃ­ */
 }
 .benefit-media video{ width:100%; height:100%; object-fit:cover; display:block; }
 
-/* Hover SCALE celé karty – jen na desktopu/pointer zařízeních */
+/* Hover SCALE celÃ© karty â€“ jen na desktopu/pointer zaÅ™Ã­zenÃ­ch */
 @media (hover:hover) and (pointer:fine){
   .benefit-block{
     transition: opacity .6s, transform .6s, box-shadow .25s ease;
   }
   .benefit-block:hover{
-    transform: scale(1.012);          /* jemné zvětšení */
+    transform: scale(1.012);          /* jemnÃ© zvÄ›tÅ¡enÃ­ */
     box-shadow: 0 18px 46px rgba(0,0,0,.14);
   }
 }
 
-/* CTA zůstává stejné (má už hover na fialovou) */
+/* CTA zÅ¯stÃ¡vÃ¡ stejnÃ© (mÃ¡ uÅ¾ hover na fialovou) */
 
-/* Responsivní (beze změny, jen větší mezery zachováme) */
+/* ResponsivnÃ­ (beze zmÄ›ny, jen vÄ›tÅ¡Ã­ mezery zachovÃ¡me) */
 @media (max-width:1024px){
   .benefit-block{
     grid-template-columns:1fr;
@@ -277,15 +333,15 @@ a{color:inherit;text-decoration:none}
 
 .faq-list{
   background:#fff;
-  border-radius:0;          /* bez karty – jen linky */
+  border-radius:0;          /* bez karty â€“ jen linky */
 }
 
-/* jedna položka */
+/* jedna poloÅ¾ka */
 .faq-item{
   border-bottom:1px solid #e5e5e5;
 }
 
-/* otázka jako button – stejné vodicí linie jako šedé boxy */
+/* otÃ¡zka jako button â€“ stejnÃ© vodicÃ­ linie jako Å¡edÃ© boxy */
 .faq-question{
   width:100%;
   display:flex;
@@ -305,7 +361,7 @@ a{color:inherit;text-decoration:none}
 }
 .faq-question:hover{ color:#000; }
 
-/* plus/minus ikonka – dvě čárky, s animací */
+/* plus/minus ikonka â€“ dvÄ› ÄÃ¡rky, s animacÃ­ */
 .faq-icon{
   position:relative;
   width:22px; height:22px;
@@ -320,13 +376,13 @@ a{color:inherit;text-decoration:none}
   border-radius:2px; transform:translateY(-50%);
   transition:transform .25s ease, opacity .25s ease;
 }
-/* vertikální čárka pro “+” */
+/* vertikÃ¡lnÃ­ ÄÃ¡rka pro â€œ+â€ */
 .faq-icon::after{
   transform:translateY(-50%) rotate(90deg);
 }
 .faq-item.open .faq-icon::after{ opacity:0; transform:translateY(-50%) rotate(90deg) scaleX(0); } /* minus */
 
-/* odpověď – plynulá animace výšky + opacity */
+/* odpovÄ›Ä â€“ plynulÃ¡ animace vÃ½Å¡ky + opacity */
 .faq-answer{
   overflow:hidden;
   max-height:0;
@@ -341,10 +397,10 @@ a{color:inherit;text-decoration:none}
 }
 .faq-item.open .faq-answer{
   opacity:1;
-  /* max-height nastaví JS podle scrollHeight; padding se doplní přes vnitřní wrapper */
+  /* max-height nastavÃ­ JS podle scrollHeight; padding se doplnÃ­ pÅ™es vnitÅ™nÃ­ wrapper */
 }
 
-/* vnitřní odsazení obsahu odpovědi při otevření */
+/* vnitÅ™nÃ­ odsazenÃ­ obsahu odpovÄ›di pÅ™i otevÅ™enÃ­ */
 .faq-item.open .faq-answer{ padding:0 46px 18px 0; }
 
 @media (max-width:1024px){
@@ -360,12 +416,12 @@ a{color:inherit;text-decoration:none}
 }
 
 /* ===== Kontakt + Footer ===== */
-.contact-section{ background:#f0f0f0; }
+.contact-section{ background:transparent; }
 .contact-section .contact-gradient{
   background: linear-gradient(180deg, #ffffff 0%, #9691D4 100%);
 }
 .contact-section .container{
-  max-width:1640px;   /* stejně jako benefity/FAQ */
+  max-width:1640px;   /* stejnÄ› jako benefity/FAQ */
   margin:0 auto;
   padding:0 20px;
 }
@@ -392,7 +448,7 @@ a{color:inherit;text-decoration:none}
   background:#ffffff;
   border:0;
   border-radius:29px;
-  box-shadow: 0 2px 0 rgba(18,18,18,.25) inset;
+  
   font-family:'Oswald', sans-serif;
   font-weight:500;
   font-size:20px;
@@ -431,5 +487,4 @@ a{color:inherit;text-decoration:none}
   .copy-btn{ font-size:18px; padding:10px 20px; margin-bottom:90px; }
   .footer{ padding-bottom:72px; }
 }
-
 
