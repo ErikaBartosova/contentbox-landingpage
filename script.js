@@ -191,4 +191,3 @@ document.getElementById("copyEmail")?.addEventListener("click",()=>{
     setTimeout(()=>b.textContent=prev,1200);
   });
 });
-
