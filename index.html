@@ -8,139 +8,235 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;700&family=Wix+Madefor+Text:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=10">
+  <!-- CSS (cache-bust) -->
+  <link rel="stylesheet" href="styles.css?v=7">
+
+  <!-- Vanta dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.dots.min.js"></script>
+
+  <script src="script.js"></script>
 </head>
 <body>
 
-<!-- ==================== NAV ==================== -->
-<div class="nav-wrap">
-  <nav class="nav-pill" aria-label="Hlavní navigace">
-    <a class="brand" href="index.html" aria-label="ContentBox – domů" title="ContentBox">
-      <img src="Logo%20(3).png" alt="" class="brand-logo" width="30" height="30">
-      <span class="brand-text">ContentBox</span>
-    </a>
+  <!-- NAV (ponecháno, jen odsazení shora řeší CSS) -->
+  <header class="nav-wrap">
+    <nav class="nav-pill" aria-label="Hlavní navigace">
+      <a class="brand" href="index.html" aria-label="ContentBox – domů" title="ContentBox">
+        <img src="Logo%20(3).png" alt="" class="brand-logo" width="30" height="30">
+        <span class="brand-text">ContentBox</span>
+      </a>
 
-    <ul class="nav-links">
-      <li><a href="#o-aplikaci" class="nav-link">O aplikaci</a></li>
-      <li><a href="#faq" class="nav-link">FAQ</a></li>
-      <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
-    </ul>
+      <ul class="nav-links">
+        <li><a href="#o-aplikaci" class="nav-link">O aplikaci</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
+      </ul>
 
-    <div class="nav-actions">
-      <div class="lang" id="lang">
-        <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Změnit jazyk">
-          <img src="Vector.svg" alt="" class="globe" width="18" height="18">
-          <span id="langCurrent">cs</span>
-        </button>
-        <ul class="lang-menu" id="langMenu" role="listbox">
-          <li data-lang="cs" role="option" aria-selected="true">cs</li>
-          <li data-lang="en" role="option">en</li>
-        </ul>
+      <div class="nav-actions">
+        <div class="lang" id="lang">
+          <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Změnit jazyk">
+            <img src="Vector.svg" alt="" class="globe" width="18" height="18">
+            <span id="langCurrent">cs</span>
+            <svg class="chev" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+          <ul class="lang-menu" id="langMenu" role="listbox">
+            <li role="option" data-lang="cs"><span>Čeština</span></li>
+            <li role="option" data-lang="en"><span>English</span></li>
+          </ul>
+        </div>
+
+        <a class="btn-login" href="https://contentbox.cz/login" target="_blank" rel="noopener">Log in</a>
       </div>
-      <a class="btn-login" href="#" role="button">Log in</a>
-    </div>
-  </nav>
-</div>
-<!-- ================== / NAV ==================== -->
+    </nav>
+  </header>
 
-<!-- ==================== HERO =================== -->
-<section id="hero" class="hero" aria-label="Hero">
-  <div class="hero-inner">
-    <h1 class="hero-title">
-      <span class="accent">All-in-one</span> platforma pro tvorbu<br>online kampaní
-    </h1>
-    <p class="hero-sub">Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
-    <button class="btn-ghost" id="toKontakt" type="button">Navázat spojení</button>
+  <!-- HERO (na celou výšku) -->
+  <section id="hero" class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        <span class="accent">All-in-one</span> platforma pro tvorbu<br>online kampaní
+      </h1>
+      <p class="hero-sub">Briefing, překlady, schvalování a reporty – vše v jedné aplikaci.</p>
+      <button class="btn-ghost" id="toKontakt">Navázat spojení</button>
 
-    <div class="hero-badges">
-      <span class="badge">✽ Databáze projektů</span>
-      <span class="badge">✽ Monitoring projektů</span>
-      <span class="badge">✽ Finanční report</span>
-      <span class="badge">✽ Galerie výstupů</span>
-    </div>
+      <div class="hero-badges">
+        <span class="badge">✽ Databáze projektů</span>
+        <span class="badge">✽ Monitoring projektů</span>
+        <span class="badge">✽ Finanční report</span>
+        <span class="badge">✽ AI překlady</span>
+        <span class="badge">✽ Databáze formátů</span>
+        <span class="badge">✽ Galerie hotových grafik</span>
+        <span class="badge">✽ Flexibilní spolupráce</span>
+      </div>
 
-    <p class="tested">Otestováno týmy z&nbsp;e-commerce a agentur</p>
-  </div>
-</section>
-<!-- ================== / HERO =================== -->
+      <p class="tested">Otestováno 30+ značkami</p>
+    </div>
+  </section>
 
-<!-- ============== KLÍČOVÉ BENEFITY ============ -->
-<section id="o-aplikaci" class="benefits" aria-label="Klíčové benefity">
-  <div class="container benefits-head">
-    <h2>Pro koho je ContentBox ideální?</h2>
-    <p>Ideální pro značky působící online na více trzích, e-shopy hledající centralizovanou výrobu vizuálů i agentury, které chtějí zefektivnit přípravu kampaní <span class="more">(a mnoho dalších)</span>.</p>
-  </div>
-
-  <!-- 1 -->
-  <div class="container benefit-block fade-on-scroll">
-    <div class="benefit-copy">
-      <h3>Nový projekt spustíte během pár kliknutí.</h3>
-      <p>Stačí zvolit kanály a formáty, doplnit brief a vše máte pod kontrolou. Na přehledném dashboardu pak sledujete, jak se projekt krok za krokem posouvá.</p>
-      <a href="#" class="btn-try">Vyzkoušet</a>
-    </div>
-    <div class="benefit-media">
-      <video class="benefit-video" muted playsinline loop>
-        <source data-src="videos/benefit-1.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-
-  <!-- 2 -->
-  <div class="container benefit-block reverse fade-on-scroll">
-    <div class="benefit-media">
-      <video class="benefit-video" muted playsinline loop>
-        <source data-src="videos/benefit-2.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="benefit-copy">
-      <h3>Texty i grafika vždy po ruce.</h3>
-      <p>Přímo v aplikaci si objednáte copywritera nebo využijete AI překlady do 21 jazyků. Hotové vizuály se automaticky ukládají do galerie, odkud je můžete kdykoli znovu použít.</p>
-      <a href="#" class="btn-try">Vyzkoušet</a>
-    </div>
-  </div>
-
-  <!-- 3 -->
-  <div class="container benefit-block fade-on-scroll">
-    <div class="benefit-copy">
-      <h3>Finance a tým pod kontrolou.</h3>
-      <p>V aplikaci sledujete náklady od jednotlivých formátů až po celé projekty, vždy s aktuálními daty. Každý projekt má vlastní chat pro snadnou komunikaci a sdílení informací.</p>
-      <a href="#" class="btn-try">Vyzkoušet</a>
-    </div>
-    <div class="benefit-media">
-      <video class="benefit-video" muted playsinline loop>
-        <source data-src="videos/benefit-3.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-<!-- ============ / KLÍČOVÉ BENEFITY ============ -->
-
-<!-- ===================== FAQ =================== -->
-<section id="faq" class="faq-section" aria-label="FAQ">
+<!-- ===================== KLÍČOVÉ BENEFITY ===================== -->
+<section id="benefity" class="benefits">
   <div class="container">
-    <h2 class="faq-title">FAQ</h2>
+
+    <header class="benefits-head">
+      <h2>Pro koho je ContentBox ideální?</h2>
+      <p>
+        Ideální pro značky působící online na více trzích, e-shopy hledající
+        centralizovanou výrobu vizuálů i agentury, které chtějí zefektivnit
+        přípravu kampaní <span class="more">(a mnoho dalších)</span>.
+      </p>
+    </header>
+
+    <!-- Blok 1: TEXT vlevo, VIDEO vpravo -->
+    <article class="benefit-block fade-on-scroll">
+      <div class="benefit-copy">
+        <h3>Nový projekt spustíte během pár kliknutí.</h3>
+        <p>
+          Stačí zvolit kanály a formáty, doplnit brief a vše máte pod kontrolou.
+          Na přehledném dashboardu pak sledujete, jak se projekt krok za krokem posouvá.
+        </p>
+        <a href="#kontakt" class="btn-try nav-link">Vyzkoušet</a>
+      </div>
+      <div class="benefit-media">
+        <video class="benefit-video" muted loop playsinline preload="none">
+          <source data-src="3.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </article>
+
+    <!-- Blok 2: VIDEO vlevo, TEXT vpravo (přeskáčku) -->
+    <article class="benefit-block reverse fade-on-scroll">
+      <div class="benefit-media">
+        <video class="benefit-video" muted loop playsinline preload="none">
+          <source data-src="2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="benefit-copy">
+        <h3>Texty i grafika vždy po ruce.</h3>
+        <p>
+          Přímo v aplikaci si objednáte copywritera nebo využijete AI překlady
+          do 21 jazyků. Hotové vizuály se automaticky ukládají do galerie,
+          odkud je můžete kdykoli znovu použít.
+        </p>
+        <a href="#kontakt" class="btn-try nav-link">Vyzkoušet</a>
+      </div>
+    </article>
+
+    <!-- Blok 3: TEXT vlevo, VIDEO vpravo -->
+    <article class="benefit-block fade-on-scroll">
+      <div class="benefit-copy">
+        <h3>Finance a tým pod kontrolou.</h3>
+        <p>
+          V aplikaci sledujete náklady od jednotlivých formátů až po celé projekty,
+          vždy s aktuálními daty. Každý projekt má vlastní chat pro snadnou komunikaci
+          a přehledné sdílení informací.
+        </p>
+        <a href="#kontakt" class="btn-try nav-link">Vyzkoušet</a>
+      </div>
+      <div class="benefit-media">
+        <video class="benefit-video" muted loop playsinline preload="none">
+          <source data-src="1.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </article>
+
+  </div>
+</section>
+<!-- =================== / KLÍČOVÉ BENEFITY ===================== -->
+
+  <!-- ========================= FAQ ========================= -->
+<section id="faq" class="faq-section">
+  <div class="container">
+    <h2 class="faq-title">FAQ – Nejčastější dotazy</h2>
+
     <div class="faq-list">
-      <div class="faq-item">
+
+      <article class="faq-item">
         <button class="faq-question" aria-expanded="false">
-          Jak dlouho trvá základní nastavení?
+          <span>Podporuje ContentBox i vícejazyčné kampaně?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">První projekt spustíte během pár minut – stačí zvolit kanály a formáty.</div>
-      </div>
-      <div class="faq-item">
+        <div class="faq-answer">
+          Ano. U každého formátu si můžete nastavit požadované jazyky. Díky našim pluginům pro grafiky probíhá adaptace rychle a co nejvíce automatizovaně.
+        </div>
+      </article>
+
+      <article class="faq-item">
         <button class="faq-question" aria-expanded="false">
-          Je možné importovat vlastní šablony?
+          <span>Jak funguje komunikace mezi manažery a grafiky přímo v aplikaci?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">Ano, do galerie lze nahrát vaše šablony a znovu je používat v dalších kampaních.</div>
-      </div>
+        <div class="faq-answer">
+          Každý projekt má vlastní chat, ve kterém můžete označovat spolupracovníky. O důležitých zprávách navíc dostanou upozornění i e-mailem.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Jak vypadá proces přípravy kampaně?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Projekt založíte během pár kliknutí, přidáte kolegy a z katalogu vyberete potřebné formáty (sociální sítě, e-commerce, tisk, display bannery apod.). Vyplníte brief pro grafika a/nebo copywritera, komunikace probíhá v projektovém chatu. V aplikaci můžete provádět validace, sledovat náklady a po schválení dostanete hotové grafiky i s otevřenými daty na zvolené úložiště.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Co se stane, když potřebujeme přidat nový formát nebo kanál, který zatím v databázi není?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Stačí nás kontaktovat a formát pro vás přidáme.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Jak má vypadat brief pro grafika?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Každá značka je jiná, proto vám sestavíme ukázkový brief přímo na míru.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Můžeme do aplikace zapojit vlastní grafiky nebo agenturu?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Ano. ContentBox umožňuje zapojení externích týmů a aplikaci vám můžeme upravit tak, aby vám vyhovovala.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Jaké jsou možnosti integrace nebo exportu?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          ContentBox neposkytuje mediální správu kampaní, ale dodává finální grafiky. Ty můžete jednoduše předat své mediální agentuře nebo přidat jejího zástupce přímo do projektu.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Jaká je cena?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          Cenová nabídka se sestavuje individuálně podle rozsahu využití a míry personalizace.
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
-<!-- =================== / FAQ =================== -->
+<!-- ======================= / FAQ ========================= -->
 
-<!-- ============== Kontakt + Footer ============ -->
+ <!-- ====================== Kontakt + Footer ====================== -->
 <section id="kontakt" class="contact-section" aria-label="Kontakt">
   <div class="contact-gradient">
     <div class="container">
@@ -152,8 +248,10 @@
 
       <button id="copyEmail" class="copy-btn" type="button" aria-label="Zkopírovat e-mail">
         <span>Zkopírovat email</span>
-        <img src="https://raw.githubusercontent.com/ErikaBartosova/contentbox-landingpage/main/fi-rr-envelope.svg"
-             alt="" width="22" height="22" loading="lazy">
+        <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 8l8 6 8-6" stroke="#121212" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="3" y="6" width="18" height="12" rx="6" ry="6" fill="none" stroke="#121212" stroke-width="2"/>
+        </svg>
       </button>
     </div>
 
@@ -169,9 +267,9 @@
     </div>
   </div>
 </section>
-<!-- ========= / Kontakt + Footer ============== -->
+<!-- ==================== / Kontakt + Footer ====================== -->
 
-<!-- JS -->
-<script src="script.js?v=10" defer></script>
+  <!-- JS -->
+  <script src="script.js?v=7" defer></script>
 </body>
 </html>
