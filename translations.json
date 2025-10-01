@@ -50,6 +50,7 @@
     "__added__brand.title": "ContentBox",
     "__added__lang.aria": "Změnit jazyk",
     "__added__section.contact": "Kontakt",
+    "contact.copied": "Zkopírováno!"
     "__added__contact.copy.aria": "Zkopírovat e-mail"
   },
   "en": {
@@ -103,6 +104,7 @@
     "__added__brand.title": "ContentBox",
     "__added__lang.aria": "Change language",
     "__added__section.contact": "Contact",
+    "contact.copied": "Copied!"
     "__added__contact.copy.aria": "Copy email address"
   }
 }
