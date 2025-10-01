@@ -655,3 +655,75 @@ a{color:inherit;text-decoration:none}
 }
 #kontakt .copy-btn:active{ transform: scale(0.99); }
 
+/* === Klíčové benefity: typografie + tlačítka === */
+
+/* Typografie textové části bloku */
+.benefit-copy h3{
+  font-family:'Oswald',sans-serif;
+  font-weight:400;
+  font-size:32px;
+  line-height:1.25;
+  color:#121212;
+  margin:0 0 12px;
+}
+.benefit-copy p{
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:24px;
+  color:#121212;
+  max-width: 360px; /* drží úzký sloupec jako v grafice */
+}
+
+/* Černé tlačítko „Vyzkoušet“ */
+.btn-try{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 22px;
+  border-radius:53px;
+  background:#121212;
+  color:#fff;
+  font:700 18px/1 'Oswald',sans-serif;
+  letter-spacing:.2px;
+  box-shadow:none;
+  transition:transform .18s ease, filter .18s ease, box-shadow .18s ease, color .18s ease, background-color .18s ease;
+  text-decoration:none;
+}
+/* zachovat bílý text i po návštěvě odkazu */
+.btn-try:link,
+.btn-try:visited{ color:#fff; }
+
+
+/* přetlačí drobné styly z .nav-link, protože odkaz má obě třídy */
+.nav-link.btn-try,
+.nav-link.btn-try:hover{
+  opacity:1;
+  font-weight:700;
+}
+@media (max-width:680px){
+  .benefit-copy h3{ font-size:26px; line-height:32px; }
+  .benefit-copy p { font-size:15.2px; line-height:21.23px; }
+  .btn-try{ font-size:18px; padding:8px 18px; }
+}
+
+/* FIALOVÝ HOVER PRO „Vyzkoušet“ */
+:root{ --cb-purple:#7C3AED; } /* použij libovolnou, případně přepiš svou firemní fialovou */
+
+.btn-try{
+  background:#121212;
+  color:#fff;
+  transition:background-color .2s ease, transform .18s ease, box-shadow .18s ease;
+}
+.btn-try:link,
+.btn-try:visited{ color:#fff; }
+
+.btn-try:hover{
+  background:var(--cb-purple);
+  color:#fff;
+  transform:translateY(-1px);
+  box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+.btn-try:active{
+  transform:translateY(0);
+  box-shadow:0 6px 16px rgba(0,0,0,.2);
+}
